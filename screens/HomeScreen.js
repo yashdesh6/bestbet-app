@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import NewBetModal from '../components/NewBetModal'; // Adjust the import path if necessary
 
+//TODO: Get parlays from SQLite DB
 const parlayData = [
   {
     title: 'GSW WINS',
@@ -21,7 +22,6 @@ const parlayData = [
     description: 'Pika-pi Thundershock Parasect deserunt mollit Leech Seed...',
     image: require('../assets/images/placeholder.png'),
   },
-  // Add more parlay items as needed
 ];
 
 
@@ -32,6 +32,7 @@ const HomeScreen = ({navigation}) => {
     <View className="bg-zinc-950 flex-1">
       <ScrollView>
         <View className="px-4 py-10">
+          //TODO: name integration
           <Text className="text-white text-2xl font-extrabold my-6">WELCOME, JOHNNY!</Text>
           <Text className="text-gray-300 mb-4">Let's get started on your next bet!</Text>
           
