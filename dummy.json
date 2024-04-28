@@ -1,0 +1,22 @@
+{
+  "player_name": "John Doe",
+  "player_description": "Point guard for the Golden State Warriors ",
+  "user_bet": "#their exact query",
+  "bet_rating": "A+",
+  "suggestion": "A suggestion or tip regarding betting on this player.",
+  "player_facts": [
+    "In his last 10 home games, Curry has scored over 30 points 60% of the time.",
+    "In his last 5 away games, Curry has scored over 40 points 60% of the time.",
+    "Curry held his opponents to under 20 points in the paint in 70% of the past 5 away games."
+  ],
+  "graph_struct": {
+    "title": "Player Performance Over Time",
+    "data": [
+      { "value": 23, "label": "02/23 \n vs. LAC" },
+      { "value": 14, "label": "02/26 \n vs BKN" },
+      { "value": 27, "label": "02/28 \n at BKN" },
+      { "value": 15, "label": "02/31 \n vs POR" },
+      { "value": 31, "label": "03/02 \n vs POR" }
+    ]
+  }
+}
