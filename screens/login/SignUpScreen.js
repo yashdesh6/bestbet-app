@@ -1,57 +1,132 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const SignUpScreen = ({ navigation }) => {
   return (
-    <View className="flex-1 bg-zinc-950 items-center px-4 py-10">
-      <Text className="text-blue-500 text-3xl font-bold mb-4">BestBet</Text>
-      <Text className="text-white text-xl mb-8">WELCOME!</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>BestBet</Text>
+      <Text style={styles.header}>WELCOME!</Text>
       <TextInput
-        className="bg-gray-800 text-white rounded-lg px-4 py-2 mb-4 w-full"
+        style={styles.input}
         placeholder="Username"
         placeholderTextColor="#d3d3d3"
       />
       <TextInput
-        className="bg-gray-800 text-white rounded-lg px-4 py-2 mb-4 w-full"
+        style={styles.input}
         placeholder="Email"
         placeholderTextColor="#d3d3d3"
       />
       <TextInput
-        className="bg-gray-800 text-white rounded-lg px-4 py-2 mb-4 w-full"
+        style={styles.input}
         placeholder="Password"
         placeholderTextColor="#d3d3d3"
         secureTextEntry
       />
       <TextInput
-        className="bg-gray-800 text-white rounded-lg px-4 py-2 mb-4 w-full"
+        style={styles.input}
         placeholder="Confirm Password"
         placeholderTextColor="#d3d3d3"
         secureTextEntry
       />
-      <View className="flex-row justify-between w-full mb-4">
-        <View className="flex-row items-center">
-          <TouchableOpacity className="mr-2">
-            <View className="h-4 w-4 rounded-full border border-gray-500" />
+      <View style={styles.optionContainer}>
+        <View style={styles.rememberMeContainer}>
+          <TouchableOpacity style={styles.rememberMeCheck}>
+            <View style={styles.checkbox} />
           </TouchableOpacity>
-          <Text className="text-gray-300">Remember me</Text>
+          <Text style={styles.optionText}>Remember me</Text>
         </View>
         <TouchableOpacity>
-          <Text className="text-blue-500">Forgot Password?</Text>
+          <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        className="bg-blue-500 py-2 px-4 rounded-lg mb-4 w-full"
+        style={styles.signUpButton}
         onPress={() => console.log('Sign Up')}
       >
-        <Text className="text-white text-center">Sign Up</Text>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
-      <Text className="text-gray-400 mb-4">Or</Text>
+      <Text style={styles.orText}>Or</Text>
       {/* Social sign-ins would go here */}
       <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-        <Text className="text-gray-300">Already have an account? Login</Text>
+        <Text style={styles.loginPrompt}>Already have an account? Login</Text>
       </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#1a1a1a', // Equivalent to bg-zinc-950
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 40,
+  },
+  title: {
+    color: '#007aff', // Equivalent to text-blue-500
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  header: {
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 32,
+  },
+  input: {
+    backgroundColor: '#333',
+    color: 'white',
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    marginBottom: 16,
+    width: '100%',
+  },
+  optionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 16,
+  },
+  rememberMeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rememberMeCheck: {
+    marginRight: 8,
+  },
+  checkbox: {
+    height: 16,
+    width: 16,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: '#b3b3b3',
+  },
+  optionText: {
+    color: '#b3b3b3',
+  },
+  forgotPassword: {
+    color: '#007aff',
+  },
+  signUpButton: {
+    backgroundColor: '#007aff',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    marginBottom: 16,
+    width: '100%',
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  orText: {
+    color: '#666',
+    marginBottom: 16,
+  },
+  loginPrompt: {
+    color: '#b3b3b3',
+  },
+});
 
 export default SignUpScreen;

@@ -44,8 +44,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ScreenZero" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="ScreenZero" component={ScreenZero} />
+      <Stack.Navigator initialRouteName="ScreenOne" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="ScreenOne" component={ScreenOne} />
         <Stack.Screen name="ScreenTwo" component={ScreenTwo} />
         <Stack.Screen name="ScreenThree" component={ScreenThree} />
