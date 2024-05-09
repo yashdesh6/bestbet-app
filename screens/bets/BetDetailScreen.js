@@ -38,10 +38,11 @@ const BetDetailScreen = () => {
         <Text style={styles.statisticsHeader}>STATISTICS</Text>
         <View style={styles.statisticsContainer}>
           <BarChart
-            barWidth={14}
-            noOfSections={dummyData.graph_struct.data.length}
+            spacing={8}
+            barWidth={23}
+            noOfSections={7}
             barBorderRadius={4}
-            frontColor="lightgray"
+            frontColor={'gray'}
             data={dummyData.graph_struct.data}
             yAxisThickness={0}
             xAxisThickness={0}
@@ -49,10 +50,10 @@ const BetDetailScreen = () => {
             showReferenceLine1
             referenceLine1Position={threshold}
             referenceLine1Config={{
-              color: "blue",
-              dashWidth: 2,
-              dashGap: 3,
-              thickness: 3,
+              color: "#F7F7F7",
+              dashWidth: 12,
+              dashGap: 10,
+              thickness: 1.5,
             }}
           />
         </View>
