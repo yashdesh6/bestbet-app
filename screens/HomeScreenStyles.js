@@ -7,26 +7,20 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   topSection: {
-    marginTop: "10%",
-    height: "15%",
+    marginTop: "15%",
+    height: "12%",
   },
   midSection: {
     height: "65%",
+    padding: 10
   },
   bottomSection: {
     justifyContent: "center",
     height: "15%",
     alignItems: 'center'
   },
-  navBar: {
-    padding: 10,
-  },
-  menuIcon: {
-    width: 40,
-    height: 40,
-  },
   header: {
-    padding: 20,
+    padding: 30,
   },
   welcomeText: {
     color: "#FFFFFF",
@@ -78,8 +72,40 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
   },
+  parlayTextContainer: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
   parlayTitle: {
     color: '#F7F7F7',
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase"
+  },
+  parlayGradeGreen: {
+    color: '#1DCE86',
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase"
+  },
+  parlayGradeYellow: {
+    color: '#E5A500',
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase"
+  },
+  parlayGradeRed: {
+    color: '#FF6257',
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase"
+  },
+  parlayGradeDefault: {
+    color: 'black',
     fontFamily: "Inter-Bold",
     fontSize: 18,
     lineHeight: 22,
@@ -98,9 +124,10 @@ const styles = StyleSheet.create({
   newParlayButton: {
     backgroundColor: "#009AFA",
     borderRadius: 20,
-    padding: 25,
     alignItems: "center",
+    justifyContent: 'center',
     margin: 20,
+    height: 56,
     width: '75%'
   },
   newParlayText: {

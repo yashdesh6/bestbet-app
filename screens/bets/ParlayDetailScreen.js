@@ -1,152 +1,258 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
-import NewBetModal from '../../components/NewBetModal'; // Adjust the path as needed
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  StyleSheet,
+} from "react-native";
+import NewBetModal from "../../components/NewBetModal"; // Adjust the path as needed
+import arrowIcon from "../../assets/images/arrow.png";
+
+const getStyleForGrade = (grade) => {
+  let style;
+  if (grade.startsWith("A")) {
+    style = styles.betGradeGreen;
+  } else if (grade.startsWith("B")) {
+    style = styles.betGradeYellow;
+  } else if (grade.startsWith("C")) {
+    style = styles.betGradeRed;
+  } else {
+    style = styles.betGradeDefault;
+  }
+  return style;
+};
 
 const ParlayDetailScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const betData = {
-    name: 'STEPHEN CURRY',
-    strength: 'C-',
-    description: 'Stephen Curry to score over 27.5 points against the Celtics',
-    image: require('../../assets/images/placeholder.png'), // Ensure the image path is correct
-  };
+  const betData = [
+    {
+      title: "STEPHEN CURRY",
+      grade: "C-",
+      description:
+        "Stephen Curry to score over 27.5 points against the Celtics",
+      image: require("../../assets/images/steph.png"), // Ensure the image path is correct
+    },
+    {
+      title: "STEPHEN CURRY",
+      grade: "C-",
+      description:
+        "Stephen Curry to score over 27.5 points against the Celtics",
+      image: require("../../assets/images/steph.png"), // Ensure the image path is correct
+    },
+    {
+      title: "STEPHEN CURRY",
+      grade: "C-",
+      description:
+        "Stephen Curry to score over 27.5 points against the Celtics",
+      image: require("../../assets/images/steph.png"), // Ensure the image path is correct
+    },
+  ];
 
   const handleEvaluateBet = (betInput) => {
     // Handle bet input evaluation here
-    console.log('Evaluating bet:', betInput);
+    console.log("Evaluating bet:", betInput);
     // Close the modal and possibly navigate
     setModalVisible(false);
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.contentContainer}>
-          <Text style={styles.title}>{betData.name}</Text>
-          <Text style={styles.subtitle}>OVERALL STRENGTH: {betData.strength}</Text>
-          
-          <View style={styles.strengthBar}>
-            <View style={styles.strengthIndicator} />
-          </View>
-
-          <Text style={styles.sectionHeader}>YOUR EVALUATED BETS</Text>
-          
-          <TouchableOpacity 
-            onPress={() => navigation.navigate('BetDetailScreen', { bet: betData })}
-            style={styles.betContainer}
-          >
-            <Image source={betData.image} style={styles.betImage} />
-            <View style={styles.betDetails}>
-              <Text style={styles.betName}>{betData.name}</Text>
-              <Text style={styles.betStrength}>{betData.strength}</Text>
-              <Text style={styles.betDescription}>{betData.description}</Text>
-            </View>
-            <Text style={styles.betNavigate}>{'>'}</Text>
-          </TouchableOpacity>
+    <View style={styles.screen}>
+      <View style={styles.topSection}>
+        <Text style={styles.title}>{betData[0].title}</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.subtitle}>OVERALL STRENGTH: </Text>
+          <Text style={styles.strengthText}>{betData[0].grade}</Text>
         </View>
-      </ScrollView>
-      <TouchableOpacity 
-        onPress={() => setModalVisible(true)}
-        style={styles.addButton}
-      >
-        <Text style={styles.addButtonText}>Add Bet +</Text>
-      </TouchableOpacity>
-      <NewBetModal
-        isVisible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        onEvaluateBet={handleEvaluateBet}
-        navigation={navigation}
-      />
+        <View style={styles.strengthBar}>
+          <View style={styles.strengthIndicator} />
+        </View>
+      </View>
+      <View style={styles.midSection}>
+        <Text style={styles.sectionHeader}>YOUR EVALUATED BETS</Text>
+
+        <ScrollView>
+          {betData.map((bet, index) => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("BetDetailScreen")}
+              key={index}
+              style={styles.betItem}
+            >
+              <Image source={bet.image} />
+              <View style={styles.betText}>
+                <View style={styles.betTextContainer}>
+                <Text style={styles.betTitle}>{`${bet.title}: `}</Text>
+                <Text
+                  style={getStyleForGrade(bet.grade)}
+                >{`(${bet.grade})`}</Text>
+                </View>
+                <Text style={styles.betDescription}>{bet.description}</Text>
+              </View>
+              <Image style={styles.arrowIcon} source={arrowIcon} />
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+      <View style={styles.bottomSection}>
+        <TouchableOpacity
+          onPress={() => setModalVisible(true)}
+          style={styles.addButton}
+        >
+          <Text style={styles.addButtonText}>Add Bet +</Text>
+        </TouchableOpacity>
+        <NewBetModal
+          isVisible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onEvaluateBet={handleEvaluateBet}
+          navigation={navigation}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#1a1a1a', // Equivalent to bg-zinc-950
+  screen: {
+    backgroundColor: "#151719",
+    height: "100%",
+    justifyContent: "flex-start",
   },
-  contentContainer: {
-    padding: 16,
-    alignItems: 'center',
+  topSection: {
+    marginTop: "20%",
+    padding: 20,
+    height: "12%",
+  },
+  midSection: {
+    height: "65%",
+    padding: 10,
+  },
+  bottomSection: {
+    justifyContent: "center",
+    height: "15%",
+    alignItems: "center",
   },
   title: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
+    color: "white",
+    fontSize: 22,
+    fontFamily: "Inter-Bold",
+    marginBottom: 4,
+    alignSelf: "flex-start",
+  },
+  textContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignSelf: "flex-start",
     marginBottom: 8,
   },
   subtitle: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
+    fontFamily: "Inter-Bold",
+    marginBottom: 16,
+  },
+  strengthText: {
+    color: "#FF6257",
+    fontSize: 18,
+    fontFamily: "Inter-Bold",
     marginBottom: 16,
   },
   strengthBar: {
     height: 4,
-    backgroundColor: '#333', // Equivalent to bg-gray-700
+    backgroundColor: "#333", // Equivalent to bg-gray-700
     borderRadius: 2,
-    overflow: 'hidden',
-    width: '100%',
-    marginBottom: 16,
+    overflow: "hidden",
+    width: "100%",
+    marginBottom: 75,
   },
   strengthIndicator: {
-    height: '100%',
-    width: '33%', // Example percentage
-    backgroundColor: '#dc143c', // Equivalent to bg-red-600
+    height: "100%",
+    width: "33%", // Example percentage
+    backgroundColor: "#dc143c", // Equivalent to bg-red-600
   },
   sectionHeader: {
-    color: '#007aff', // Equivalent to text-blue-500
+    color: "#009afa", // Equivalent to text-blue-500
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 16,
+    alignSelf: "flex-start",
   },
-  betContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#333', // Equivalent to bg-gray-800
-    borderRadius: 10,
-    padding: 16,
-    marginBottom: 24,
-    width: '100%',
+  betItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    margin: 10,
+    borderRadius: 20,
+    padding: 20,
   },
-  betImage: {
-    height: 48,
-    width: 48,
-    borderRadius: 24,
-    marginRight: 16,
-  },
-  betDetails: {
+  betText: {
     flex: 1,
+    marginLeft: 10,
   },
-  betName: {
-    color: 'white',
-    fontWeight: 'bold',
+  betTextContainer: {
+    display: 'flex',
+    flexDirection: 'row'
   },
-  betStrength: {
-    color: '#dc143c', // Equivalent to text-red-500
+  betTitle: {
+    color: "#F7F7F7",
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase",
+  },
+  betGradeGreen: {
+    color: "#1DCE86",
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase",
+  },
+  betGradeYellow: {
+    color: "#E5A500",
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase",
+  },
+  betGradeRed: {
+    color: "#FF6257",
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase",
+  },
+  betGradeDefault: {
+    color: "black",
+    fontFamily: "Inter-Bold",
+    fontSize: 18,
+    lineHeight: 22,
+    textTransform: "uppercase",
   },
   betDescription: {
-    color: '#b3b3b3', // Equivalent to text-gray-400
+    color: "#F7FBFF",
+    fontSize: 16,
+    lineHeight: 18,
+    marginTop: 5,
   },
-  betNavigate: {
-    color: '#007aff', // Equivalent to text-blue-500
-    fontSize: 24,
+  arrowIcon: {
+    width: 20,
+    height: 20,
   },
   addButton: {
-    backgroundColor: '#007aff',
+    backgroundColor: "#007aff",
     padding: 12,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     margin: 16,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     right: 0,
     left: 0,
     zIndex: 10,
   },
   addButtonText: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
   },
 });

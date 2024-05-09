@@ -38,7 +38,7 @@ const BetDetailScreen = () => {
         <Text style={styles.statisticsHeader}>STATISTICS</Text>
         <View style={styles.statisticsContainer}>
           <BarChart
-            barWidth={22}
+            barWidth={14}
             noOfSections={dummyData.graph_struct.data.length}
             barBorderRadius={4}
             frontColor="lightgray"
@@ -55,9 +55,6 @@ const BetDetailScreen = () => {
               thickness: 3,
             }}
           />
-        </View>
-        <View style={styles.learnMoreContainer}>
-          <Text style={styles.learnMoreText}>Learn More About The Opposing Team</Text>
         </View>
       </View>
     </ScrollView>
