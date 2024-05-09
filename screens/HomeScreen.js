@@ -7,87 +7,188 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import NewBetModal from "../components/NewBetModal"; // Adjust the import path if necessary
+import styles from "./HomeScreenStyles";
+import NewBetModal from "../components/NewBetModal";
+import arrowIcon from "../assets/images/arrow.png";
 
-//TODO: Get parlays from SQLite DB
+const getStyleForGrade = (grade) => {
+  let style;
+  if (grade.startsWith("A")) {
+    style = styles.parlayGradeGreen;
+  } else if (grade.startsWith("B")) {
+    style = styles.parlayGradeYellow;
+  } else if (grade.startsWith("C")) {
+    style = styles.parlayGradeRed;
+  } else {
+    style = styles.parlayGradeDefault;
+  }
+  return style;
+};
+
 const parlayData = [
   {
     title: "GSW WINS",
     grade: "A+",
     description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
-    image: require("../assets/images/placeholder.png"), // Make sure you have this placeholder image in your assets
+    image: require("../assets/images/teams.png"),
   },
   {
     title: "LEBRON JAMES",
     grade: "B-",
     description:
       "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
-    image: require("../assets/images/placeholder.png"),
+    image: require("../assets/images/lebron.png"),
   },
   {
     title: "STEPHEN CURRY",
     grade: "C-",
     description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
-    image: require("../assets/images/placeholder.png"),
+    image: require("../assets/images/steph.png"),
+  },
+  {
+    title: "GSW WINS",
+    grade: "A+",
+    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+    image: require("../assets/images/teams.png"),
+  },
+  {
+    title: "LEBRON JAMES",
+    grade: "B-",
+    description:
+      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+    image: require("../assets/images/lebron.png"),
+  },
+  {
+    title: "STEPHEN CURRY",
+    grade: "C-",
+    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+    image: require("../assets/images/steph.png"),
+  },
+  {
+    title: "GSW WINS",
+    grade: "A+",
+    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+    image: require("../assets/images/teams.png"),
+  },
+  {
+    title: "LEBRON JAMES",
+    grade: "B-",
+    description:
+      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+    image: require("../assets/images/lebron.png"),
+  },
+  {
+    title: "STEPHEN CURRY",
+    grade: "C-",
+    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+    image: require("../assets/images/steph.png"),
+  },
+  {
+    title: "GSW WINS",
+    grade: "A+",
+    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+    image: require("../assets/images/teams.png"),
+  },
+  {
+    title: "LEBRON JAMES",
+    grade: "B-",
+    description:
+      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+    image: require("../assets/images/lebron.png"),
+  },
+  {
+    title: "STEPHEN CURRY",
+    grade: "C-",
+    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+    image: require("../assets/images/steph.png"),
+  },
+  {
+    title: "GSW WINS",
+    grade: "A+",
+    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+    image: require("../assets/images/teams.png"),
+  },
+  {
+    title: "LEBRON JAMES",
+    grade: "B-",
+    description:
+      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+    image: require("../assets/images/lebron.png"),
+  },
+  {
+    title: "STEPHEN CURRY",
+    grade: "C-",
+    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+    image: require("../assets/images/steph.png"),
   },
 ];
 
 const HomeScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const username = 'SHAI';
+  const username = "SHAI";
 
   return (
-    <View className="bg-zinc-950 flex-1">
-      <ScrollView>
-        <View className="px-4 py-10">
-          {/* //TODO: name integration */}
-          <Text className="text-white text-2xl font-extrabold my-6">
-            WELCOME, {username}!
-          </Text>
-          <Text className="text-gray-300 mb-4">
+    <View style={styles.screen}>
+      <View style={styles.topSection}>
+        <View style={styles.header}>
+          <Text style={styles.welcomeText}>WELCOME, {username}</Text>
+          <Text style={styles.subtitle}>
             Let's get started on your next bet!
           </Text>
-
-          <Text className="text-blue-500 text-lg font-bold mb-4">
-            EVALUATE PREVIOUS PARLAYS
-          </Text>
+        </View>
+      </View>
+      <View style={styles.midSection}>
+        <View style={styles.subHeader}>
+          <Text style={styles.subHeaderText}>EVALUATE PREVIOUS PARLAYS</Text>
+          <TouchableOpacity>
+            <Image source={{ uri: "info_icon_url" }} style={styles.infoIcon} />
+          </TouchableOpacity>
+        </View>
+        {/* Feature Flag the search bar
+        <View style={styles.searchContainer}>
           <TextInput
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 mb-4"
-            placeholder="Search Parlay"
-            placeholderTextColor="#d3d3d3"
+            style={styles.searchInput}
+            placeholder={"Search Parlay"}
+            placeholderTextColor={"#F7F7F7"}
           />
+        </View> */}
+        <ScrollView>
           {parlayData.map((parlay, index) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate('ParlayDetailScreen')}
+              onPress={() => navigation.navigate("ParlayDetailScreen")}
               key={index}
-              className="bg-gray-800 rounded-lg p-4 mb-4 flex-row items-center"
+              style={styles.parlayItem}
             >
-              <Image
-                source={parlay.image}
-                className="h-12 w-12 rounded-full mr-4"
-              />
-              <View className="flex-1">
-                <Text className="text-white text-lg">{`${parlay.title}: (${parlay.grade})`}</Text>
-                <Text className="text-gray-400">{parlay.description}</Text>
+              <Image source={parlay.image} />
+              <View style={styles.parlayText}>
+                <View style={styles.parlayTextContainer}>
+                  <Text style={styles.parlayTitle}>{`${parlay.title}: `}</Text>
+                  <Text
+                    style={getStyleForGrade(parlay.grade)}
+                  >{`(${parlay.grade})`}</Text>
+                </View>
+                <Text style={styles.parlayDescription}>
+                  {parlay.description}
+                </Text>
               </View>
+              <Image style={styles.arrowIcon} source={arrowIcon} />
             </TouchableOpacity>
           ))}
-        </View>
-      </ScrollView>
-      <TouchableOpacity
-        onPress={() => setModalVisible(true)}
-        className="bg-blue-500 py-3 px-4 rounded-lg items-center m-4 absolute bottom-0 right-0 left-0 z-10"
-      >
-        <Text className="text-white text-center">New Parlay +</Text>
-      </TouchableOpacity>
+        </ScrollView>
+      </View>
+      <View style={styles.bottomSection}>
+        <TouchableOpacity
+          onPress={() => setModalVisible(true)}
+          style={styles.newParlayButton}
+        >
+          <Text style={styles.newParlayText}>New Parlay +</Text>
+        </TouchableOpacity>
+      </View>
       <NewBetModal
         isVisible={modalVisible}
         onClose={() => setModalVisible(false)}
-        // You may want to handle the evaluated bet data here or in the modal component
         onEvaluateBet={(betData) => {
           console.log("Bet evaluated:", betData);
-          // Perform actions after evaluating the bet, such as updating state
-          // Then close the modal
           setModalVisible(false);
         }}
         navigation={navigation}

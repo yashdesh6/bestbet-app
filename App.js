@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import * as Font from "expo-font";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScreenOne from './screens/onboarding/ScreenOne';
@@ -9,10 +10,38 @@ import SignUpScreen from './screens/login/SignUpScreen';
 import HomeScreen from './screens/HomeScreen';
 import ParlayDetailScreen from './screens/bets/ParlayDetailScreen';
 import BetDetailScreen from './screens/bets/BetDetailScreen';
+import ScreenZero from "./screens/onboarding/ScreenZero";
 
 const Stack = createStackNavigator();
 
 const App = () => {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        "Inter-Black": require("./assets/fonts/Inter-Black.ttf"),
+        "Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
+        "Inter-ExtraBold": require("./assets/fonts/Inter-ExtraBold.ttf"),
+        "Inter-ExtraLight": require("./assets/fonts/Inter-ExtraLight.ttf"),
+        "Inter-Light": require("./assets/fonts/Inter-Light.ttf"),
+        "Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
+        "Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
+        "Inter-SemiBold": require("./assets/fonts/Inter-SemiBold.ttf"),
+        "Inter-Thin": require("./assets/fonts/Inter-Thin.ttf"),
+        "JetBrainsMono-ExtraBold": require("./assets/fonts/JetBrainsMono-ExtraBold.ttf"),
+      });
+      setFontsLoaded(true);
+    };
+
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+    return;
+  }
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ScreenOne" screenOptions={{ headerShown: false }}>

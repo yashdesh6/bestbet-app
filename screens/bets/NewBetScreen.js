@@ -1,58 +1,56 @@
-// not being used, its here for reference
-
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 
 const NewBetScreen = ({ navigation }) => {
   const [selectedLeague, setSelectedLeague] = useState('NBA');
   const [selectedType, setSelectedType] = useState('Player O/U');
   const [betInput, setBetInput] = useState('');
 
+  const leagues = ['NFL', 'NBA', 'WNBA', 'MLB'];
+
   const LeagueButton = ({ league }) => (
     <TouchableOpacity
       onPress={() => setSelectedLeague(league)}
-      className={`m-1 p-2 ${selectedLeague === league ? 'bg-blue-600' : 'bg-gray-700'} rounded-full`}
+      style={[styles.leagueButton, selectedLeague === league ? styles.active : styles.inactive]}
     >
-      <Text className="text-white text-sm">{league}</Text>
+      <Text style={styles.buttonText}>{league}</Text>
     </TouchableOpacity>
   );
 
   const TypeButton = ({ type }) => (
     <TouchableOpacity
       onPress={() => setSelectedType(type)}
-      className={`m-1 p-2 ${selectedType === type ? 'bg-blue-600' : 'bg-gray-700'} rounded-full`}
+      style={[styles.typeButton, selectedType === type ? styles.active : styles.inactive]}
     >
-      <Text className="text-white text-sm">{type}</Text>
+      <Text style={styles.buttonText}>{type}</Text>
     </TouchableOpacity>
   );
 
   const handleEvaluateBet = () => {
-    // Here you'd typically do something with the bet input, like sending it to your backend.
-    // For now, we'll navigate to the ParlayDetailScreen with the assumption that the bet has been evaluated.
+    // Typically, you'd handle the bet input here, for this example, navigating as a placeholder
     navigation.navigate('ParlayDetailScreen');
   };
 
   return (
-    <ScrollView className="bg-zinc-950 flex-1">
-      <View className="p-4">
-        <Text className="text-gray-300 text-lg font-bold mb-2">LEAGUE</Text>
-        <View className="flex-row justify-around flex-wrap">
-          <LeagueButton league="NFL" />
-          <LeagueButton league="NBA" />
-          <LeagueButton league="WNBA" />
-          <LeagueButton league="MLB" />
+    <ScrollView style={styles.container}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.headerText}>LEAGUE</Text>
+        <View style={styles.row}>
+        {leagues.map((league, index) => {
+            return <LeagueButton league={league} key={index}/>
+          })}
         </View>
 
-        <Text className="text-gray-300 text-lg font-bold mt-4 mb-2">TYPE</Text>
-        <View className="flex-row justify-around flex-wrap">
+        <Text style={styles.headerText}>TYPE</Text>
+        <View style={styles.row}>
           <TypeButton type="Player O/U" />
           <TypeButton type="Team O/U" />
           <TypeButton type="Moneyline" />
         </View>
 
-        <Text className="text-gray-300 text-lg font-bold mt-4 mb-2">INPUT FIRST BET</Text>
+        <Text style={styles.headerText}>INPUT FIRST BET</Text>
         <TextInput
-          className="bg-gray-800 text-white rounded-lg p-4"
+          style={styles.input}
           placeholder="Type Here..."
           placeholderTextColor="#d3d3d3"
           value={betInput}
@@ -61,14 +59,70 @@ const NewBetScreen = ({ navigation }) => {
         />
 
         <TouchableOpacity 
-            onPress={() => navigation.navigate('ParlayDetailScreen')}
-        className="bg-blue-500 p-3 rounded-lg mt-4"
+            onPress={handleEvaluateBet}
+            style={styles.evaluateButton}
         >
-          <Text className="text-white text-center">Evaluate Bet ↓</Text>
+          <Text style={styles.buttonText}>Evaluate Bet ↓</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#1a1a1a',
+    flex: 1,
+  },
+  innerContainer: {
+    padding: 16,
+  },
+  headerText: {
+    color: '#b3b3b3',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'around',
+    flexWrap: 'wrap',
+  },
+  leagueButton: {
+    margin: 4,
+    padding: 8,
+    borderRadius: 50,
+  },
+  typeButton: {
+    margin: 4,
+    padding: 8,
+    borderRadius: 50,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 14,
+  },
+  active: {
+    backgroundColor: '#007aff',
+  },
+  inactive: {
+    backgroundColor: '#333',
+  },
+  input: {
+    backgroundColor: '#333',
+    color: 'white',
+    borderRadius: 10,
+    padding: 16,
+    marginBottom: 16,
+    textAlignVertical: 'top', // This helps with multiline input aligning properly
+  },
+  evaluateButton: {
+    backgroundColor: '#007aff',
+    padding: 12,
+    borderRadius: 10,
+    marginTop: 16,
+  },
+});
 
 export default NewBetScreen;
