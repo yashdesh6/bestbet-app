@@ -2,47 +2,54 @@ import React from "react";
 import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 import dummyData from "../../dummy.json";
+import { getStyleForGrade } from "../../components/getStyleFromGrade";
+import InfoBox from "../../components/InfoBox";
+import Fact from "../../components/Fact";
 
 const BetDetailScreen = () => {
   const betData = {
-    image: require("../../assets/images/placeholder.png"),
+    image: require("../../assets/images/steph.png"),
   };
 
-  const threshold = 15;
+  const threshold = 27.5;
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.contentContainer}>
+    <View style={styles.container}>
+      <View style={styles.topSection}>
         <Image source={betData.image} style={styles.image} />
         <Text style={styles.title}>{dummyData.player_name}</Text>
         <Text style={styles.description}>{dummyData.player_description}</Text>
-
-        <View style={styles.betContainer}>
-          <Text style={styles.sectionHeader}>YOUR BET</Text>
-          <Text style={styles.text}>{dummyData.user_bet}.</Text>
-          <Text style={styles.strength}>{`STRENGTH: ${dummyData.bet_rating}`}</Text>
-        </View>
-
-        <View style={styles.suggestionContainer}>
-          <Text style={styles.sectionHeader}>WE SUGGEST</Text>
-          <Text style={styles.text}>{dummyData.suggestion}</Text>
-        </View>
-
-        <Text style={styles.infoHeader}>INFO</Text>
-        <Text style={styles.factsHeader}>FACTS</Text>
-        {dummyData.player_facts.map((fact, index) => (
-          <View style={styles.factContainer} key={index}>
-            <Text style={styles.factText}>{fact}</Text>
+      </View>
+      <ScrollView style={styles.contentSection}>
+        <InfoBox title={"YOUR BET"}>
+          <Text style={styles.betText}>{dummyData.user_bet}</Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.strengthText}>STRENGTH: </Text>
+            <Text style={getStyleForGrade(dummyData.bet_rating)}>
+              {dummyData.bet_rating}
+            </Text>
           </View>
-        ))}
-        <Text style={styles.statisticsHeader}>STATISTICS</Text>
+        </InfoBox>
+        <View style={styles.line} />
+        <InfoBox title={"WE SUGGEST"} style={{ paddingHorizontal: 24 }}>
+          <Text style={styles.suggestText}>{dummyData.suggestion}</Text>
+        </InfoBox>
+        <View style={styles.line} />
+        <Text style={styles.infoHeader}>INFO</Text>
+        <Text style={styles.subsectionHeader}>FACTS</Text>
+        <View style={styles.facts}>
+          {dummyData.player_facts.map((fact, index) => (
+            <Fact fact={fact} key={index} />
+          ))}
+        </View>
+        <Text style={styles.subsectionHeader}>STATISTICS</Text>
         <View style={styles.statisticsContainer}>
           <BarChart
             spacing={8}
             barWidth={23}
             noOfSections={7}
             barBorderRadius={4}
-            frontColor={'gray'}
+            frontColor={"gray"}
             data={dummyData.graph_struct.data}
             yAxisThickness={0}
             xAxisThickness={0}
@@ -55,22 +62,30 @@ const BetDetailScreen = () => {
               dashGap: 10,
               thickness: 1.5,
             }}
+            xAxisLabelTextStyle={{color: 'white', fontSize: 10}}
+            xAxisTextNumberOfLines={3}
+            yAxisTextStyle={{color: 'white'}}
           />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#1a1a1a', // Equivalent to bg-zinc-950
-    flex: 1,
+    display: "flex",
+    backgroundColor: "#151719",
+    height: "100%",
   },
-  contentContainer: {
+  topSection: {
+    display: "flex",
+    alignItems: "center",
+    marginTop: "15%",
+  },
+  contentSection: {
+    display: "flex",
     paddingHorizontal: 16,
-    paddingVertical: 40,
-    alignItems: 'center',
   },
   image: {
     height: 96,
@@ -79,93 +94,93 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: {
-    color: '#007aff', // Equivalent to text-blue-500
-    fontSize: 36,
-    fontWeight: 'bold',
+    color: "#F7F7F7", // Equivalent to text-blue-500
+    fontSize: 28,
+    fontFamily: "Inter-Bold",
+    textTransform: "uppercase",
     marginBottom: 8,
   },
   description: {
-    color: 'white',
+    color: "#F7F7F7",
+    fontStyle: "italic",
     fontSize: 18,
     marginBottom: 16,
   },
   betContainer: {
-    width: '100%',
-    backgroundColor: '#333', // Equivalent to bg-gray-700
+    width: "100%",
+    backgroundColor: "#333", // Equivalent to bg-gray-700
     borderRadius: 10,
     padding: 16,
     marginBottom: 24,
   },
   sectionHeader: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginBottom: 8,
   },
-  text: {
-    fontSize: 14,
-    color: 'white',
+  betText: {
+    fontSize: 18,
+    lineHeight: 22,
+    fontFamily: "Inter-SemiBold",
+    color: "#F7F7F7",
     marginBottom: 16,
   },
-  strength: {
-    color: '#32cd32', // Equivalent to text-green-500
-    fontWeight: 'bold',
+  line: {
+    width: "100%",
+    height: 0,
+    borderColor: "rgba(200, 200, 200, 0.2)",
+    borderWidth: "1px",
+    marginVertical: 30
+  },
+  suggestText: {
+    fontSize: 16,
+    lineHeight: 22,
+    fontFamily: "Inter-SemiBold",
+    color: "#F7F7F7",
+    marginBottom: 16,
+    textAlign: "center",
+  },
+  facts: {
+    marginBottom: 35
+  },
+  textContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignSelf: "center",
+    alignItems: "center",
+    marginBottom: "2%",
+  },
+  strengthText: {
+    color: "#F7FBFF", // Equivalent to text-green-500
+    fontFamily: "Inter-Bold",
+    fontSize: 22,
   },
   suggestionContainer: {
-    width: '100%',
-    backgroundColor: '#333',
+    width: "100%",
+    backgroundColor: "#333",
     borderRadius: 10,
     padding: 16,
   },
   infoHeader: {
-    color: 'white',
+    color: "white",
+    fontSize: 22,
+    fontFamily: "Inter-Bold",
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  subsectionHeader: {
+    color: "#009AFA",
     fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 40,
-    marginBottom: 16,
-  },
-  factsHeader: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  factContainer: {
-    width: '100%',
-    backgroundColor: '#333',
-    borderRadius: 10,
-    padding: 16,
-    marginBottom: 16,
-  },
-  factText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  statisticsHeader: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: "Inter-Bold",
     marginBottom: 16,
   },
   statisticsContainer: {
-    width: '100%',
-    backgroundColor: '#333',
-    borderRadius: 10,
+    width: "100%",
+    backgroundColor: "#333",
+    borderRadius: 20,
     padding: 16,
-    marginBottom: 16,
-  },
-  learnMoreContainer: {
-    width: '100%',
-    backgroundColor: '#007aff', // Equivalent to bg-blue-700
-    borderRadius: 10,
-    padding: 16,
-    marginBottom: 16,
-  },
-  learnMoreText: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
+    marginBottom: "15%",
   },
 });
 
