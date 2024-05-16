@@ -7,25 +7,14 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
-import NewBetModal from "../../components/NewBetModal"; // Adjust the path as needed
+import NewBetModal from "../../components/NewBetModal";
 import arrowIcon from "../../assets/images/arrow.png";
-
-const getStyleForGrade = (grade) => {
-  let style;
-  if (grade.startsWith("A")) {
-    style = styles.betGradeGreen;
-  } else if (grade.startsWith("B")) {
-    style = styles.betGradeYellow;
-  } else if (grade.startsWith("C")) {
-    style = styles.betGradeRed;
-  } else {
-    style = styles.betGradeDefault;
-  }
-  return style;
-};
+import { getStyleForGrade, getStyleForStrength } from "../../components/getStyleFromGrade";
 
 const ParlayDetailScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const overallStrength = "C";
 
   const betData = [
     {
@@ -64,10 +53,10 @@ const ParlayDetailScreen = ({ navigation }) => {
         <Text style={styles.title}>{betData[0].title}</Text>
         <View style={styles.textContainer}>
           <Text style={styles.subtitle}>OVERALL STRENGTH: </Text>
-          <Text style={styles.strengthText}>{betData[0].grade}</Text>
+          <Text style={getStyleForGrade(overallStrength)}>{overallStrength}</Text>
         </View>
         <View style={styles.strengthBar}>
-          <View style={styles.strengthIndicator} />
+          <View style={getStyleForStrength(overallStrength)} />
         </View>
       </View>
       <View style={styles.midSection}>
@@ -98,9 +87,9 @@ const ParlayDetailScreen = ({ navigation }) => {
       <View style={styles.bottomSection}>
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
-          style={styles.addButton}
+          style={styles.newBetButton}
         >
-          <Text style={styles.addButtonText}>Add Bet +</Text>
+          <Text style={styles.addButtonText}>New Bet +</Text>
         </TouchableOpacity>
         <NewBetModal
           isVisible={modalVisible}
@@ -120,7 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   topSection: {
-    marginTop: "20%",
+    marginTop: "18%",
     padding: 20,
     height: "12%",
   },
@@ -137,26 +126,20 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 22,
     fontFamily: "Inter-Bold",
-    marginBottom: 4,
+    marginBottom: '1%',
     alignSelf: "flex-start",
   },
   textContainer: {
     display: "flex",
     flexDirection: "row",
     alignSelf: "flex-start",
-    marginBottom: 8,
+    marginBottom: '2%',
   },
   subtitle: {
     color: "white",
     fontSize: 18,
     fontFamily: "Inter-Bold",
-    marginBottom: 16,
-  },
-  strengthText: {
-    color: "#FF6257",
-    fontSize: 18,
-    fontFamily: "Inter-Bold",
-    marginBottom: 16,
+    marginBottom: '5%',
   },
   strengthBar: {
     height: 4,
@@ -164,18 +147,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     overflow: "hidden",
     width: "100%",
-    marginBottom: 75,
-  },
-  strengthIndicator: {
-    height: "100%",
-    width: "33%", // Example percentage
-    backgroundColor: "#dc143c", // Equivalent to bg-red-600
+    marginBottom: '25%',
   },
   sectionHeader: {
     color: "#009afa", // Equivalent to text-blue-500
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 16,
+    marginBottom: '5%',
+    marginLeft: '2%',
     alignSelf: "flex-start",
   },
   betItem: {
@@ -201,34 +180,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textTransform: "uppercase",
   },
-  betGradeGreen: {
-    color: "#1DCE86",
-    fontFamily: "Inter-Bold",
-    fontSize: 18,
-    lineHeight: 22,
-    textTransform: "uppercase",
-  },
-  betGradeYellow: {
-    color: "#E5A500",
-    fontFamily: "Inter-Bold",
-    fontSize: 18,
-    lineHeight: 22,
-    textTransform: "uppercase",
-  },
-  betGradeRed: {
-    color: "#FF6257",
-    fontFamily: "Inter-Bold",
-    fontSize: 18,
-    lineHeight: 22,
-    textTransform: "uppercase",
-  },
-  betGradeDefault: {
-    color: "black",
-    fontFamily: "Inter-Bold",
-    fontSize: 18,
-    lineHeight: 22,
-    textTransform: "uppercase",
-  },
   betDescription: {
     color: "#F7FBFF",
     fontSize: 16,
@@ -239,17 +190,14 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  addButton: {
-    backgroundColor: "#007aff",
-    padding: 12,
-    borderRadius: 10,
+  newBetButton: {
+    backgroundColor: "#009AFA",
+    borderRadius: 20,
     alignItems: "center",
-    margin: 16,
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    left: 0,
-    zIndex: 10,
+    justifyContent: 'center',
+    marginBottom: '10%',
+    height: 56,
+    width: '75%'
   },
   addButtonText: {
     color: "white",
