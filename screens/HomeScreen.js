@@ -159,6 +159,13 @@ const HomeScreen = ({ navigation }) => {
               key={index}
               style={styles.parlayItem}
             >
+
+              {/* <ImageIcon
+                player={parlay.player}
+                gradient={parlay.gradient}
+                team1={parlay.team1}
+                team2={parlay.team2}
+              /> */}
               <Image source={parlay.image} />
               <View style={styles.parlayText}>
                 <View style={styles.parlayTextContainer}>

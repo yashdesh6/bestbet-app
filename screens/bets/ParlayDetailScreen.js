@@ -9,12 +9,15 @@ import {
 } from "react-native";
 import NewBetModal from "../../components/NewBetModal";
 import arrowIcon from "../../assets/images/arrow.png";
-import { getStyleForGrade, getStyleForStrength } from "../../components/getStyleFromGrade";
+import {
+  getStyleForGrade,
+  getStyleForStrength,
+} from "../../components/getStyleFromGrade";
 
 const ParlayDetailScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const overallStrength = "C";
+  const overallStrength = "C-";
 
   const betData = [
     {
@@ -53,7 +56,9 @@ const ParlayDetailScreen = ({ navigation }) => {
         <Text style={styles.title}>{betData[0].title}</Text>
         <View style={styles.textContainer}>
           <Text style={styles.subtitle}>OVERALL STRENGTH: </Text>
-          <Text style={getStyleForGrade(overallStrength)}>{overallStrength}</Text>
+          <Text style={getStyleForGrade(overallStrength)}>
+            {overallStrength}
+          </Text>
         </View>
         <View style={styles.strengthBar}>
           <View style={getStyleForStrength(overallStrength)} />
@@ -69,13 +74,19 @@ const ParlayDetailScreen = ({ navigation }) => {
               key={index}
               style={styles.betItem}
             >
+              {/* <ImageIcon
+                player={betData.player}
+                gradient={betData.gradient}
+                team1={betData.team1}
+                team2={betData.team2}
+              /> */}
               <Image source={bet.image} />
               <View style={styles.betText}>
                 <View style={styles.betTextContainer}>
-                <Text style={styles.betTitle}>{`${bet.title}: `}</Text>
-                <Text
-                  style={getStyleForGrade(bet.grade)}
-                >{`(${bet.grade})`}</Text>
+                  <Text style={styles.betTitle}>{`${bet.title}: `}</Text>
+                  <Text
+                    style={getStyleForGrade(bet.grade)}
+                  >{`(${bet.grade})`}</Text>
                 </View>
                 <Text style={styles.betDescription}>{bet.description}</Text>
               </View>
@@ -126,20 +137,20 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 22,
     fontFamily: "Inter-Bold",
-    marginBottom: '1%',
+    marginBottom: "1%",
     alignSelf: "flex-start",
   },
   textContainer: {
     display: "flex",
     flexDirection: "row",
     alignSelf: "flex-start",
-    marginBottom: '2%',
+    marginBottom: "2%",
   },
   subtitle: {
     color: "white",
     fontSize: 18,
     fontFamily: "Inter-Bold",
-    marginBottom: '5%',
+    marginBottom: "5%",
   },
   strengthBar: {
     height: 4,
@@ -147,14 +158,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     overflow: "hidden",
     width: "100%",
-    marginBottom: '25%',
+    marginBottom: "25%",
   },
   sectionHeader: {
     color: "#009afa", // Equivalent to text-blue-500
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: '5%',
-    marginLeft: '2%',
+    marginBottom: "5%",
+    marginLeft: "2%",
     alignSelf: "flex-start",
   },
   betItem: {
@@ -170,8 +181,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   betTextContainer: {
-    display: 'flex',
-    flexDirection: 'row'
+    display: "flex",
+    flexDirection: "row",
   },
   betTitle: {
     color: "#F7F7F7",
@@ -194,10 +205,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#009AFA",
     borderRadius: 20,
     alignItems: "center",
-    justifyContent: 'center',
-    marginBottom: '10%',
+    justifyContent: "center",
+    marginBottom: "10%",
     height: 56,
-    width: '75%'
+    width: "75%",
   },
   addButtonText: {
     color: "white",
