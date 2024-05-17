@@ -10,114 +10,98 @@ import {
 import styles from "./HomeScreenStyles";
 import NewBetModal from "../components/NewBetModal";
 import arrowIcon from "../assets/images/arrow.png";
-
-const getStyleForGrade = (grade) => {
-  if (typeof grade !== "string") return styles.parlayGradeDefault;
-
-  let style;
-  return styles.parlayGradeDefault
-  if (grade.startsWith("A")) {
-    style = styles.parlayGradeGreen;
-  } else if (grade.startsWith("B")) {
-    style = styles.parlayGradeYellow;
-  } else if (grade.startsWith("C")) {
-    style = styles.parlayGradeRed;
-  } else {
-    style = styles.parlayGradeDefault;
-  }
-  return style;
-};
+import { getStyleForGrade, getStyleForStrength } from "../components/getStyleFromGrade";
 
 const parlayData = [
-  {
-    title: "GSW WINS",
-    grade: "A+",
-    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
-    image: require("../assets/images/teams.png"),
-  },
-  {
-    title: "LEBRON JAMES",
-    grade: "B-",
-    description:
-      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
-    image: require("../assets/images/lebron.png"),
-  },
-  {
-    title: "STEPHEN CURRY",
-    grade: "C-",
-    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
-    image: require("../assets/images/steph.png"),
-  },
-  {
-    title: "GSW WINS",
-    grade: "A+",
-    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
-    image: require("../assets/images/teams.png"),
-  },
-  {
-    title: "LEBRON JAMES",
-    grade: "B-",
-    description:
-      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
-    image: require("../assets/images/lebron.png"),
-  },
-  {
-    title: "STEPHEN CURRY",
-    grade: "C-",
-    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
-    image: require("../assets/images/steph.png"),
-  },
-  {
-    title: "GSW WINS",
-    grade: "A+",
-    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
-    image: require("../assets/images/teams.png"),
-  },
-  {
-    title: "LEBRON JAMES",
-    grade: "B-",
-    description:
-      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
-    image: require("../assets/images/lebron.png"),
-  },
-  {
-    title: "STEPHEN CURRY",
-    grade: "C-",
-    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
-    image: require("../assets/images/steph.png"),
-  },
-  {
-    title: "GSW WINS",
-    grade: "A+",
-    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
-    image: require("../assets/images/teams.png"),
-  },
-  {
-    title: "LEBRON JAMES",
-    grade: "B-",
-    description:
-      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
-    image: require("../assets/images/lebron.png"),
-  },
-  {
-    title: "STEPHEN CURRY",
-    grade: "C-",
-    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
-    image: require("../assets/images/steph.png"),
-  },
-  {
-    title: "GSW WINS",
-    grade: "A+",
-    description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
-    image: require("../assets/images/teams.png"),
-  },
-  {
-    title: "LEBRON JAMES",
-    grade: "B-",
-    description:
-      "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
-    image: require("../assets/images/lebron.png"),
-  },
+  // {
+  //   title: "GSW WINS",
+  //   grade: "A+",
+  //   description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+  //   image: require("../assets/images/teams.png"),
+  // },
+  // {
+  //   title: "LEBRON JAMES",
+  //   grade: "B-",
+  //   description:
+  //     "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+  //   image: require("../assets/images/lebron.png"),
+  // },
+  // {
+  //   title: "STEPHEN CURRY",
+  //   grade: "C-",
+  //   description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+  //   image: require("../assets/images/steph.png"),
+  // },
+  // {
+  //   title: "GSW WINS",
+  //   grade: "A+",
+  //   description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+  //   image: require("../assets/images/teams.png"),
+  // },
+  // {
+  //   title: "LEBRON JAMES",
+  //   grade: "B-",
+  //   description:
+  //     "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+  //   image: require("../assets/images/lebron.png"),
+  // },
+  // {
+  //   title: "STEPHEN CURRY",
+  //   grade: "C-",
+  //   description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+  //   image: require("../assets/images/steph.png"),
+  // },
+  // {
+  //   title: "GSW WINS",
+  //   grade: "A+",
+  //   description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+  //   image: require("../assets/images/teams.png"),
+  // },
+  // {
+  //   title: "LEBRON JAMES",
+  //   grade: "B-",
+  //   description:
+  //     "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+  //   image: require("../assets/images/lebron.png"),
+  // },
+  // {
+  //   title: "STEPHEN CURRY",
+  //   grade: "C-",
+  //   description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+  //   image: require("../assets/images/steph.png"),
+  // },
+  // {
+  //   title: "GSW WINS",
+  //   grade: "A+",
+  //   description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+  //   image: require("../assets/images/teams.png"),
+  // },
+  // {
+  //   title: "LEBRON JAMES",
+  //   grade: "B-",
+  //   description:
+  //     "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+  //   image: require("../assets/images/lebron.png"),
+  // },
+  // {
+  //   title: "STEPHEN CURRY",
+  //   grade: "C-",
+  //   description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+  //   image: require("../assets/images/steph.png"),
+  // },
+  // {
+  //   title: "GSW WINS",
+  //   grade: "A+",
+  //   description: "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+  //   image: require("../assets/images/teams.png"),
+  // },
+  // {
+  //   title: "LEBRON JAMES",
+  //   grade: "B-",
+  //   description:
+  //     "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+  //   image: require("../assets/images/lebron.png"),
+  // },
   {
     title: "STEPHEN CURRY",
     grade: "C-",
