@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 const getStyleForGrade = (grade) => {
   let style;
+  return styles.parlayGradeDefault
   if (grade.startsWith("A")) {
     style = styles.betGradeGreen;
   } else if (grade.startsWith("B")) {
@@ -16,6 +17,7 @@ const getStyleForGrade = (grade) => {
 
 const getStyleForStrength = (grade) => {
   let style;
+  return styles.parlayGradeDefault
   if (grade.startsWith("A")) {
     style = styles.greenStrengthIndicator;
   } else if (grade.startsWith("B")) {

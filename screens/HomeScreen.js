@@ -12,7 +12,10 @@ import NewBetModal from "../components/NewBetModal";
 import arrowIcon from "../assets/images/arrow.png";
 
 const getStyleForGrade = (grade) => {
+  if (typeof grade !== "string") return styles.parlayGradeDefault;
+
   let style;
+  return styles.parlayGradeDefault
   if (grade.startsWith("A")) {
     style = styles.parlayGradeGreen;
   } else if (grade.startsWith("B")) {
@@ -127,6 +130,16 @@ const HomeScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const username = "SHAI";
 
+  const handleEvaluateBet = (betData) => {
+    const newBet = {
+      title: "NIKOLA JOKIC",
+      grade: betData.response.over_under_analysis,
+      description: betData.response.response.content,
+      image: require("../assets/images/steph.png"), // Replace with actual image if available
+    };
+    navigation.navigate("ParlayDetailScreen", { initialBet: newBet });
+  };
+
   return (
     <View style={styles.screen}>
       <View style={styles.topSection}>
@@ -144,14 +157,6 @@ const HomeScreen = ({ navigation }) => {
             <Image source={{ uri: "info_icon_url" }} style={styles.infoIcon} />
           </TouchableOpacity>
         </View>
-        {/* Feature Flag the search bar
-        <View style={styles.searchContainer}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder={"Search Parlay"}
-            placeholderTextColor={"#F7F7F7"}
-          />
-        </View> */}
         <ScrollView>
           {parlayData.map((parlay, index) => (
             <TouchableOpacity
@@ -163,9 +168,7 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.parlayText}>
                 <View style={styles.parlayTextContainer}>
                   <Text style={styles.parlayTitle}>{`${parlay.title}: `}</Text>
-                  <Text
-                    style={getStyleForGrade(parlay.grade)}
-                  >{`(${parlay.grade})`}</Text>
+                  <Text style={getStyleForGrade(parlay.grade)}>{`(${parlay.grade})`}</Text>
                 </View>
                 <Text style={styles.parlayDescription}>
                   {parlay.description}
@@ -187,10 +190,7 @@ const HomeScreen = ({ navigation }) => {
       <NewBetModal
         isVisible={modalVisible}
         onClose={() => setModalVisible(false)}
-        onEvaluateBet={(betData) => {
-          console.log("Bet evaluated:", betData);
-          setModalVisible(false);
-        }}
+        onEvaluateBet={handleEvaluateBet}
         navigation={navigation}
       />
     </View>

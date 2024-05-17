@@ -37,11 +37,6 @@ const App = () => {
     loadFonts();
   }, []);
 
-  if (!fontsLoaded) {
-    return;
-  }
-
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ScreenOne" screenOptions={{ headerShown: false }}>
