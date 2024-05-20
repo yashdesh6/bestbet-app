@@ -5,13 +5,16 @@ import dummyData from "../../dummy.json";
 import { getStyleForGrade } from "../../components/getStyleFromGrade";
 import InfoBox from "../../components/InfoBox";
 import Fact from "../../components/Fact";
+import processGraphData from "../../components/processGraphData";
 
 const BetDetailScreen = () => {
   const betData = {
     image: require("../../assets/images/steph.png"),
   };
 
-  const threshold = 27.5;
+  const threshold = dummyData.threshold;
+
+  const processedData = processGraphData(dummyData);
 
   return (
     <View style={styles.container}>
@@ -50,7 +53,7 @@ const BetDetailScreen = () => {
             noOfSections={7}
             barBorderRadius={4}
             frontColor={"gray"}
-            data={dummyData.graph_struct.data}
+            data={processedData.graph_struct.data}
             yAxisThickness={0}
             xAxisThickness={0}
             hideRules
