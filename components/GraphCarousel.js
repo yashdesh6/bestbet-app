@@ -36,9 +36,9 @@ export default GraphCarousel;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: "#333",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     borderRadius: 20,
-    padding: 16,
+    padding: 18,
     marginVertical: "5%",
   },
 });

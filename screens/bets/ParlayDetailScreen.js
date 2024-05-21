@@ -9,6 +9,7 @@ import styles from "./styles/ParlayDetailsScreenStyles";
 import formatJSON from "../../components/functions/formatJSON";
 import newDummy from "../../newDummy.json";
 import { arrowIcon } from "../../assets/const";
+import ImageIcon from "../../components/ImageIcon";
 
 const ParlayDetailScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,19 +22,19 @@ const ParlayDetailScreen = ({ navigation }) => {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
-      image: jsonData.playerImage,
+      playerImage: jsonData.playerImage,
     },
     {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
-      image: jsonData.playerImage,
+      playerImage: jsonData.playerImage,
     },
     {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
-      image: jsonData.playerImage,
+      playerImage: jsonData.playerImage,
     },
   ];
 
@@ -68,13 +69,10 @@ const ParlayDetailScreen = ({ navigation }) => {
               key={index}
               style={styles.betItem}
             >
-              {/* <ImageIcon
-                player={betData.player}
-                gradient={betData.gradient}
-                team1={betData.team1}
-                team2={betData.team2}
-              /> */}
-              <Image source={{ uri: bet.image }} style={styles.image} />
+              <ImageIcon
+                player={{ uri: bet.playerImage }}
+                style={styles.image}
+              />
               <View style={styles.betText}>
                 <View style={styles.betTextContainer}>
                   <Text style={styles.betTitle}>{`${bet.title}: `}</Text>

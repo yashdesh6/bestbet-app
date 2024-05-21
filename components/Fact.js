@@ -2,8 +2,6 @@ import { BlurView } from "expo-blur";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { starIcon, targetIcon, trophyIcon } from "../assets/const";
 
-
-
 const Fact = (props) => {
   let image = targetIcon;
   if (props.number == 1) {
@@ -15,10 +13,7 @@ const Fact = (props) => {
   return (
     <BlurView tint={"dark"} style={styles.factContainer}>
       <View style={styles.circle}>
-        <Image
-          style={styles.factImage}
-          source={{ uri: image }}
-        />
+        <Image style={styles.factImage} source={{ uri: image }} />
       </View>
       <Text style={styles.factText}>{props.fact}</Text>
     </BlurView>
@@ -50,7 +45,7 @@ const styles = StyleSheet.create({
   },
   factImage: {
     position: "relative",
-    overflow: 'visible',
+    overflow: "visible",
     width: "70%",
     height: "70%",
     top: "15%",

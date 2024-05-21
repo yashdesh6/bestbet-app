@@ -1,10 +1,37 @@
-import { Image } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import { placeHolder } from "../assets/const";
 
-const ImageIcon = ({player, style}) => {
-
+const ImageIcon = ({ player, gradient, team1, team2, style }) => {
+  if (player != null && gradient != null) {
     return (
-        <Image source={{ uri: player }} style={style} />
+      <View>
+        <Image source={{ uri: gradient }} style={[styles.backgroundImage, style]} />
+        <Image source={{ uri: player }} style={[styles.foregroundImage, style]} />
+      </View>
     );
+  } else if (team1 != null && team2 != null) {
+    return (
+      <View>
+        <Image source={{ uri: team1 }} style={style} />
+        <Image source={{ uri: team2 }} style={style} />
+      </View>
+    );
+  } else {
+    return <Image source={{ uri: placeHolder }} style={style} />;
+  }
 };
+
+const styles = StyleSheet.create({
+    backgroundImage: {
+        position: "absolute"
+    },
+    foregroundImage: {
+        position: "relative",
+        width:  25,
+        height: 75,
+        top: 0,
+        left: 0
+    }
+})
 
 export default ImageIcon;

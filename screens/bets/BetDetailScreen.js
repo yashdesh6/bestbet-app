@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import newDummyData from "../../newDummy.json";
 import { getStyleForGrade } from "../../components/functions/getStyleFromGrade";
 import InfoBox from "../../components/InfoBox";
@@ -8,14 +8,14 @@ import GraphCarousel from "../../components/GraphCarousel";
 import formatJSON from "../../components/functions/formatJSON";
 import styles from "./styles/BetDetailsScreenStyles";
 import ImageIcon from "../../components/ImageIcon";
+import { exGradient } from "../../assets/const";
 
 const BetDetailScreen = () => {
   const betData = formatJSON(newDummyData);
-
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
-        <ImageIcon player={betData.playerImage} style={styles.image} />
+        <ImageIcon gradient={exGradient} player={betData.playerImage} style={styles.image} />
         <Text style={styles.title}>{betData.playerName}</Text>
         <Text style={styles.description}>{betData.playerDescription}</Text>
       </View>
