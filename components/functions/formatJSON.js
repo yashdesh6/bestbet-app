@@ -16,14 +16,18 @@ const formatJSON = (json) => {
   const playerData = json.response.player_data.response.content;
   const suggestion = json.response.response.content;
   const betNumber = json.response.bet_number[0];
-  const facts = [];
+  const facts = [
+    "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
+    "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
+    "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+  ];
 
   return {
     playerName: formatName(playerData.Player),
     playerDescription: `Position: ${playerData.Position} | Team: ${formatName(
       playerData.Team
     )}`,
-    userBet: "",
+    userBet: "Lorem ipsum dolores sit amet adipiscing elit",
     betRating: json.response.over_under_analysis,
     suggestion: suggestion,
     playerFacts: facts,
