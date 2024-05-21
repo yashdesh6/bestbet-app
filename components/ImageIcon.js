@@ -5,7 +5,7 @@ const ImageIcon = ({ player, gradient, team1, team2, style }) => {
   if (player != null && gradient != null) {
     return (
       <View>
-        <Image source={{ uri: gradient }} style={[styles.backgroundImage, style]} />
+        {/* <Image source={{ uri: gradient }} style={[styles.backgroundImage, style]} /> */}
         <Image source={{ uri: player }} style={[styles.foregroundImage, style]} />
       </View>
     );
@@ -23,14 +23,8 @@ const ImageIcon = ({ player, gradient, team1, team2, style }) => {
 
 const styles = StyleSheet.create({
     backgroundImage: {
-        position: "absolute"
     },
     foregroundImage: {
-        position: "relative",
-        width:  25,
-        height: 75,
-        top: 0,
-        left: 0
     }
 })
 
