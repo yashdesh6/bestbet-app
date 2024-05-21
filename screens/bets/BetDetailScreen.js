@@ -1,20 +1,17 @@
 import React from "react";
 import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
-import { BarChart } from "react-native-gifted-charts";
 import dummyData from "../../dummy.json";
+import newDummyData from "../../newDummy.json";
 import { getStyleForGrade } from "../../components/getStyleFromGrade";
 import InfoBox from "../../components/InfoBox";
 import Fact from "../../components/Fact";
-import processGraphData from "../../components/processGraphData";
+import GraphDisplay from "../../components/GraphDisplay";
+import GraphCarousel from "../../components/GraphCarousel";
 
 const BetDetailScreen = () => {
   const betData = {
     image: require("../../assets/images/steph.png"),
   };
-
-  const threshold = dummyData.threshold;
-
-  const processedData = processGraphData(dummyData);
 
   return (
     <View style={styles.container}>
@@ -42,34 +39,11 @@ const BetDetailScreen = () => {
         <Text style={styles.subsectionHeader}>FACTS</Text>
         <View style={styles.facts}>
           {dummyData.player_facts.map((fact, index) => (
-            <Fact fact={fact} key={index} />
+            <Fact fact={fact} key={index} number={index} />
           ))}
         </View>
         <Text style={styles.subsectionHeader}>STATISTICS</Text>
-        <View style={styles.statisticsContainer}>
-          <BarChart
-            spacing={8}
-            barWidth={23}
-            noOfSections={7}
-            barBorderRadius={4}
-            frontColor={"gray"}
-            data={processedData.graph_struct.data}
-            yAxisThickness={0}
-            xAxisThickness={0}
-            hideRules
-            showReferenceLine1
-            referenceLine1Position={threshold}
-            referenceLine1Config={{
-              color: "#F7F7F7",
-              dashWidth: 12,
-              dashGap: 10,
-              thickness: 1.5,
-            }}
-            xAxisLabelTextStyle={{color: 'white', fontSize: 10}}
-            xAxisTextNumberOfLines={3}
-            yAxisTextStyle={{color: 'white'}}
-          />
-        </View>
+        <GraphCarousel data={newDummyData} type={"Points"} />
       </ScrollView>
     </View>
   );
@@ -177,14 +151,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Inter-Bold",
     marginBottom: 16,
-  },
-  statisticsContainer: {
-    width: "100%",
-    backgroundColor: "#333",
-    borderRadius: 20,
-    padding: 16,
-    marginBottom: "15%",
-  },
+  }
 });
 
 export default BetDetailScreen;
