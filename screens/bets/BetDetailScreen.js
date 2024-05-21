@@ -11,11 +11,17 @@ import ImageIcon from "../../components/ImageIcon";
 import { exGradient } from "../../assets/const";
 
 const BetDetailScreen = () => {
+  const dim = 120;
   const betData = formatJSON(newDummyData);
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
-        <ImageIcon gradient={exGradient} player={betData.playerImage} style={styles.image} />
+        <ImageIcon
+          gradient={exGradient}
+          player={betData.playerImage}
+          dim={dim}
+          style={{ width: dim, height: dim, marginBottom: 16 }}
+        />
         <Text style={styles.title}>{betData.playerName}</Text>
         <Text style={styles.description}>{betData.playerDescription}</Text>
       </View>

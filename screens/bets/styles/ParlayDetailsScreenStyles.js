@@ -101,13 +101,7 @@ const styles = StyleSheet.create({
     addButtonText: {
       color: "white",
       fontSize: 18,
-    },
-    image: {
-      height: 48,
-      width: 48,
-      borderRadius: 24,
-      marginRight: 8
-    },
+    }
   });
 
   export default styles;

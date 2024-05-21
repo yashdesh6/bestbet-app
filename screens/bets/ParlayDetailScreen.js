@@ -8,13 +8,13 @@ import {
 import styles from "./styles/ParlayDetailsScreenStyles";
 import formatJSON from "../../components/functions/formatJSON";
 import newDummy from "../../newDummy.json";
-import { arrowIcon } from "../../assets/const";
+import { arrowIcon, exGradient } from "../../assets/const";
 import ImageIcon from "../../components/ImageIcon";
 
 const ParlayDetailScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
-
   const overallStrength = "C-";
+  const dim = 64;
 
   const jsonData = formatJSON(newDummy);
   const betData = [
@@ -23,18 +23,27 @@ const ParlayDetailScreen = ({ navigation }) => {
       grade: jsonData.betRating,
       description: jsonData.userBet,
       playerImage: jsonData.playerImage,
+      gradient: exGradient,
+      team1: jsonData.team1,
+      team2: jsonData.team2
     },
     {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
       playerImage: jsonData.playerImage,
+      gradient: exGradient,
+      team1: jsonData.team1,
+      team2: jsonData.team2
     },
     {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
       playerImage: jsonData.playerImage,
+      gradient: exGradient,
+      team1: jsonData.team1,
+      team2: jsonData.team2
     },
   ];
 
@@ -70,8 +79,12 @@ const ParlayDetailScreen = ({ navigation }) => {
               style={styles.betItem}
             >
               <ImageIcon
-                player={{ uri: bet.playerImage }}
-                style={styles.image}
+                player={bet.playerImage ? bet.playerImage : null}
+                gradient={bet.gradient ? bet.gradient : null}
+                team1={bet.team1 ? bet.team1 : null}
+                team2={bet.team2 ? bet.team2 : null}
+                dim={dim}
+                style={{height: dim, width: dim, marginRight: 8}}
               />
               <View style={styles.betText}>
                 <View style={styles.betTextContainer}>
