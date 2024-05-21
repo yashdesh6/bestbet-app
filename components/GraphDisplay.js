@@ -1,4 +1,4 @@
-import processGraphData from "./processGraphData";
+import processGraphData from "./functions/processGraphData";
 import { BarChart } from "react-native-gifted-charts";
 import { Text, View, Dimensions } from "react-native";
 
