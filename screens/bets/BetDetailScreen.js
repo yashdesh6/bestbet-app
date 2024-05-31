@@ -8,7 +8,7 @@ import GraphCarousel from "../../components/GraphCarousel";
 import formatJSON from "../../components/functions/formatJSON";
 import styles from "./styles/BetDetailsScreenStyles";
 import ImageIcon from "../../components/ImageIcon";
-import { exGradient } from "../../assets/const";
+import { exGradient, exTeam1, exTeam2 } from "../../assets/const";
 
 const BetDetailScreen = () => {
   const dim = 120;
@@ -16,12 +16,23 @@ const BetDetailScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
+        {/* TODO Implement in actuality once you receive actual JSON */}
         <ImageIcon
           gradient={exGradient}
           player={betData.playerImage}
+          teamLogo={exTeam1}
           dim={dim}
           style={{ width: dim, height: dim, marginBottom: 16 }}
         />
+
+        {/* EXAMPLE FOR TEAM VERSUS TEAM */}
+        {/* <ImageIcon
+          team1={exTeam1}
+          team2={exTeam2}
+          dim={dim}
+          style={{ width: dim, height: dim, marginBottom: 16 }}
+        /> */}
+
         <Text style={styles.title}>{betData.playerName}</Text>
         <Text style={styles.description}>{betData.playerDescription}</Text>
       </View>

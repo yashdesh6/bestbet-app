@@ -10,3 +10,7 @@ export const placeHolder =
   "https://lh4.googleusercontent.com/proxy/cDHJbc0vCJbyZtNFpj3vBobrnM8HPeVpWjAjxhxl-Flk3Xkcjy591meDWNmOp3c4YGTue7Uk5hNw7S4-JKHUM6EWDSzbeGNKbhtqtrE";
 export const exGradient =
   "https://static.vecteezy.com/system/resources/thumbnails/011/459/194/small_2x/shiny-gradient-circle-png.png";
+export const exTeam1 =
+  "https://www.pngall.com/wp-content/uploads/13/Golden-State-Warriors-Logo.png";
+export const exTeam2 =
+  "https://cdn.inspireuplift.com/uploads/images/seller_products/17516/iu_1711076746_1.png";

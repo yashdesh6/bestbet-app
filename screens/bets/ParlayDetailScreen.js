@@ -8,7 +8,7 @@ import {
 import styles from "./styles/ParlayDetailsScreenStyles";
 import formatJSON from "../../components/functions/formatJSON";
 import newDummy from "../../newDummy.json";
-import { arrowIcon, exGradient } from "../../assets/const";
+import { arrowIcon, exGradient, exTeam1, exTeam2 } from "../../assets/const";
 import ImageIcon from "../../components/ImageIcon";
 
 const ParlayDetailScreen = ({ navigation }) => {
@@ -24,8 +24,14 @@ const ParlayDetailScreen = ({ navigation }) => {
       description: jsonData.userBet,
       playerImage: jsonData.playerImage,
       gradient: exGradient,
-      team1: jsonData.team1,
-      team2: jsonData.team2
+      teamLogo: exTeam1,
+    },
+    {
+      title: jsonData.playerName,
+      grade: jsonData.betRating,
+      description: jsonData.userBet,
+      team1: exTeam1,
+      team2: exTeam2
     },
     {
       title: jsonData.playerName,
@@ -33,17 +39,7 @@ const ParlayDetailScreen = ({ navigation }) => {
       description: jsonData.userBet,
       playerImage: jsonData.playerImage,
       gradient: exGradient,
-      team1: jsonData.team1,
-      team2: jsonData.team2
-    },
-    {
-      title: jsonData.playerName,
-      grade: jsonData.betRating,
-      description: jsonData.userBet,
-      playerImage: jsonData.playerImage,
-      gradient: exGradient,
-      team1: jsonData.team1,
-      team2: jsonData.team2
+      teamLogo: exTeam1,
     },
   ];
 
@@ -81,10 +77,11 @@ const ParlayDetailScreen = ({ navigation }) => {
               <ImageIcon
                 player={bet.playerImage ? bet.playerImage : null}
                 gradient={bet.gradient ? bet.gradient : null}
+                teamLogo={bet.teamLogo ? bet.teamLogo : null}
                 team1={bet.team1 ? bet.team1 : null}
                 team2={bet.team2 ? bet.team2 : null}
                 dim={dim}
-                style={{height: dim, width: dim, marginRight: 8}}
+                style={styles.imageIcon}
               />
               <View style={styles.betText}>
                 <View style={styles.betTextContainer}>
