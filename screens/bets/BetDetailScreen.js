@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
-import newDummyData from "../../newDummy.json";
+import dummyData from "../../dummyCeltic.json";
 import { getStyleForGrade } from "../../components/functions/getStyleFromGrade";
 import InfoBox from "../../components/InfoBox";
 import Fact from "../../components/Fact";
@@ -12,27 +12,21 @@ import { exGradient, exTeam1, exTeam2 } from "../../assets/const";
 
 const BetDetailScreen = () => {
   const dim = 120;
-  const betData = formatJSON(newDummyData);
+  const betData = formatJSON(dummyData);
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
-        {/* TODO Implement in actuality once you receive actual JSON */}
         <ImageIcon
-          gradient={exGradient}
-          player={betData.playerImage}
-          teamLogo={exTeam1}
+          player={betData.playerImage ? betData.playerImage : null}
+          teamBackground={
+            betData.teamBackground ? betData.teamBackground : null
+          }
+          teamLogo={betData.teamLogo ? betData.teamLogo : null}
+          team1={betData.team1 ? betData.team1 : null}
+          team2={betData.team2 ? betData.team2 : null}
           dim={dim}
           style={{ width: dim, height: dim, marginBottom: 16 }}
         />
-
-        {/* EXAMPLE FOR TEAM VERSUS TEAM */}
-        {/* <ImageIcon
-          team1={exTeam1}
-          team2={exTeam2}
-          dim={dim}
-          style={{ width: dim, height: dim, marginBottom: 16 }}
-        /> */}
-
         <Text style={styles.title}>{betData.playerName}</Text>
         <Text style={styles.description}>{betData.playerDescription}</Text>
       </View>
@@ -59,7 +53,7 @@ const BetDetailScreen = () => {
           ))}
         </View>
         <Text style={styles.subsectionHeader}>STATISTICS</Text>
-        <GraphCarousel data={newDummyData} type={"Points"} />
+        <GraphCarousel data={dummyData} type={"Points"} />
       </ScrollView>
     </View>
   );

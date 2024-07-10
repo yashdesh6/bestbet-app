@@ -7,7 +7,7 @@ import {
 } from "../../components/functions/getStyleFromGrade";
 import styles from "./styles/ParlayDetailsScreenStyles";
 import formatJSON from "../../components/functions/formatJSON";
-import newDummy from "../../newDummy.json";
+import dummyData from "../../dummyRaptor.json";
 import { arrowIcon, exGradient, exTeam1, exTeam2 } from "../../assets/const";
 import ImageIcon from "../../components/ImageIcon";
 
@@ -16,30 +16,30 @@ const ParlayDetailScreen = ({ navigation }) => {
   const overallStrength = "C-";
   const dim = 64;
 
-  const jsonData = formatJSON(newDummy);
+  const jsonData = formatJSON(dummyData);
   const betData = [
     {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
       playerImage: jsonData.playerImage,
-      gradient: exGradient,
-      teamLogo: exTeam1,
+      teamBackground: jsonData.teamBackground,
+      teamLogo: jsonData.teamLogo,
     },
     {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
       team1: exTeam1,
-      team2: exTeam2
+      team2: exTeam2,
     },
     {
       title: jsonData.playerName,
       grade: jsonData.betRating,
       description: jsonData.userBet,
       playerImage: jsonData.playerImage,
-      gradient: exGradient,
-      teamLogo: exTeam1,
+      teamBackground: jsonData.teamBackground,
+      teamLogo: jsonData.teamLogo,
     },
   ];
 
@@ -76,7 +76,7 @@ const ParlayDetailScreen = ({ navigation }) => {
             >
               <ImageIcon
                 player={bet.playerImage ? bet.playerImage : null}
-                gradient={bet.gradient ? bet.gradient : null}
+                teamBackground={bet.teamBackground ? bet.teamBackground : null}
                 teamLogo={bet.teamLogo ? bet.teamLogo : null}
                 team1={bet.team1 ? bet.team1 : null}
                 team2={bet.team2 ? bet.team2 : null}

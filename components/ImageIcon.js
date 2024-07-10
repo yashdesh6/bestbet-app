@@ -3,17 +3,17 @@ import { placeHolder } from "../assets/const";
 
 const ImageIcon = ({
   player,
-  gradient,
+  teamBackground,
   teamLogo,
   team1,
   team2,
   dim,
   style,
 }) => {
-  if (player != null && gradient != null && teamLogo != null) {
+  if (player != null && teamBackground != null && teamLogo != null) {
     return (
       <View style={style}>
-        <Image source={{ uri: gradient }} style={styles.gradient} />
+        <Image source={{ uri: teamBackground }} style={styles.teamBackground} />
         <Image
           source={{ uri: player }}
           style={[styles.player, { borderRadius: dim * 0.45 }]}
@@ -39,7 +39,7 @@ const ImageIcon = ({
 };
 
 const styles = StyleSheet.create({
-  gradient: {
+  teamBackground: {
     width: "100%",
     height: "100%",
   },

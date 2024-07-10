@@ -12,7 +12,6 @@ const formatJSON = (json) => {
   };
 
   // Function to process the new JSON structure
-
   const playerData = json.response.player_data.response.content;
   const suggestion = json.response.response.content;
   const betNumber = json.response.bet_number[0];
@@ -33,6 +32,8 @@ const formatJSON = (json) => {
     playerFacts: facts,
     threshold: betNumber,
     playerImage: playerData.Player_pic,
+    teamLogo: playerData.Team_logo,
+    teamBackground: playerData.Team_backgroun
   };
 };
 
