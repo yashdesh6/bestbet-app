@@ -9,7 +9,6 @@ import LoginScreen from './screens/login/LoginScreen';
 import SignUpScreen from './screens/login/SignUpScreen';
 import HomeScreen from './screens/HomeScreen';
 import ParlayDetailScreen from './screens/bets/ParlayDetailScreen';
-import BetDetailScreen from './screens/bets/BetDetailScreen';
 import ScreenZero from "./screens/onboarding/ScreenZero";
 
 const Stack = createStackNavigator();
@@ -37,11 +36,6 @@ const App = () => {
     loadFonts();
   }, []);
 
-  if (!fontsLoaded) {
-    return;
-  }
-
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ScreenOne" screenOptions={{ headerShown: false }}>
@@ -52,7 +46,6 @@ const App = () => {
         <Stack.Screen name="SignupScreen" component={SignUpScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="ParlayDetailScreen" component={ParlayDetailScreen} />
-        <Stack.Screen name="BetDetailScreen" component={BetDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
