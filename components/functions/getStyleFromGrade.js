@@ -2,12 +2,14 @@ import { StyleSheet } from "react-native";
 
 const getStyleForGrade = (grade) => {
   let style;
-  if (grade.startsWith("A")) {
-    style = styles.betGradeGreen;
-  } else if (grade.startsWith("B")) {
-    style = styles.betGradeYellow;
-  } else if (grade.startsWith("C")) {
-    style = styles.betGradeRed;
+  if (grade != null) {
+    if (grade.startsWith("A")) {
+      style = styles.betGradeGreen;
+    } else if (grade.startsWith("B")) {
+      style = styles.betGradeYellow;
+    } else if (grade.startsWith("C")) {
+      style = styles.betGradeRed;
+    }
   } else {
     style = styles.betGradeDefault;
   }
@@ -16,14 +18,16 @@ const getStyleForGrade = (grade) => {
 
 const getStyleForStrength = (grade) => {
   let style;
-  if (grade.startsWith("A")) {
-    style = styles.greenStrengthIndicator;
-  } else if (grade.startsWith("B")) {
-    style = styles.yellowStrengthIndicator;
-  } else if (grade.startsWith("C")) {
-    style = styles.redStrengthIndicator;
+  if (grade != null) {
+    if (grade.startsWith("A")) {
+      style = styles.greenStrengthIndicator;
+    } else if (grade.startsWith("B")) {
+      style = styles.yellowStrengthIndicator;
+    } else if (grade.startsWith("C")) {
+      style = styles.redStrengthIndicator;
+    }
   } else {
-    style = styles.defaultStrengthIndicator;
+    style = styles.betGradeDefault;
   }
   return style;
 };
