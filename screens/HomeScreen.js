@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   Image,
 } from "react-native";
 import styles from "./HomeScreenStyles";
 import NewBetModal from "../components/NewBetModal";
-import arrowIcon from "../assets/images/arrow.png";
-import { getStyleForGrade, getStyleForStrength } from "../components/getStyleFromGrade";
+import { arrowIcon } from "../assets/const";
+import { getStyleForGrade } from "../components/functions/getStyleFromGrade";
 
 const parlayData = [
   // {
@@ -137,9 +136,6 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.midSection}>
         <View style={styles.subHeader}>
           <Text style={styles.subHeaderText}>EVALUATE PREVIOUS PARLAYS</Text>
-          <TouchableOpacity>
-            <Image source={{ uri: "info_icon_url" }} style={styles.infoIcon} />
-          </TouchableOpacity>
         </View>
         <ScrollView>
           {parlayData.map((parlay, index) => (
@@ -148,6 +144,12 @@ const HomeScreen = ({ navigation }) => {
               key={index}
               style={styles.parlayItem}
             >
+              {/* <ImageIcon
+                player={parlay.player}
+                gradient={parlay.gradient}
+                team1={parlay.team1}
+                team2={parlay.team2}
+              /> */}
               <Image source={parlay.image} />
               <View style={styles.parlayText}>
                 <View style={styles.parlayTextContainer}>
@@ -158,7 +160,7 @@ const HomeScreen = ({ navigation }) => {
                   {parlay.description}
                 </Text>
               </View>
-              <Image style={styles.arrowIcon} source={arrowIcon} />
+              <Image style={styles.arrowIcon} source={{ uri: arrowIcon }} />
             </TouchableOpacity>
           ))}
         </ScrollView>

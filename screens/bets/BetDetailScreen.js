@@ -8,6 +8,7 @@ import GraphCarousel from "../../components/GraphCarousel";
 import formatJSON from "../../components/functions/formatJSON";
 import styles from "./styles/BetDetailsScreenStyles";
 import ImageIcon from "../../components/ImageIcon";
+import { exGradient, exTeam1, exTeam2 } from "../../assets/const";
 
 const BetDetailScreen = () => {
   const dim = 120;
