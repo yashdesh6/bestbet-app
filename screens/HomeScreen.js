@@ -2,28 +2,14 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   Image,
 } from "react-native";
 import styles from "./HomeScreenStyles";
 import NewBetModal from "../components/NewBetModal";
-import arrowIcon from "../assets/images/arrow.png";
-
-const getStyleForGrade = (grade) => {
-  let style;
-  if (grade.startsWith("A")) {
-    style = styles.parlayGradeGreen;
-  } else if (grade.startsWith("B")) {
-    style = styles.parlayGradeYellow;
-  } else if (grade.startsWith("C")) {
-    style = styles.parlayGradeRed;
-  } else {
-    style = styles.parlayGradeDefault;
-  }
-  return style;
-};
+import { arrowIcon } from "../assets/const";
+import { getStyleForGrade } from "../components/functions/getStyleFromGrade";
 
 const parlayData = [
   {
@@ -140,9 +126,6 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.midSection}>
         <View style={styles.subHeader}>
           <Text style={styles.subHeaderText}>EVALUATE PREVIOUS PARLAYS</Text>
-          <TouchableOpacity>
-            <Image source={{ uri: "info_icon_url" }} style={styles.infoIcon} />
-          </TouchableOpacity>
         </View>
         {/* Feature Flag the search bar
         <View style={styles.searchContainer}>
@@ -159,7 +142,6 @@ const HomeScreen = ({ navigation }) => {
               key={index}
               style={styles.parlayItem}
             >
-
               {/* <ImageIcon
                 player={parlay.player}
                 gradient={parlay.gradient}
@@ -178,7 +160,7 @@ const HomeScreen = ({ navigation }) => {
                   {parlay.description}
                 </Text>
               </View>
-              <Image style={styles.arrowIcon} source={arrowIcon} />
+              <Image style={styles.arrowIcon} source={{ uri: arrowIcon }} />
             </TouchableOpacity>
           ))}
         </ScrollView>
