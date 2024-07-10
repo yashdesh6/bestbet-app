@@ -11,7 +11,10 @@ import dummyData from "../../dummyRaptor.json";
 import { arrowIcon, exGradient, exTeam1, exTeam2 } from "../../assets/const";
 import ImageIcon from "../../components/ImageIcon";
 
-const ParlayDetailScreen = ({ navigation }) => {
+const ParlayDetailScreen = ({ navigation, route }) => {
+  const { initialBet } = route.params;
+  console.log(initialBet);
+
   const [modalVisible, setModalVisible] = useState(false);
   const overallStrength = "C-";
   const dim = 64;
