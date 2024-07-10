@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
-import dummyData from "../../dummyCeltic.json";
+import dummyData from "../../assets/dummy/dummyRaptor.json";
 import { getStyleForGrade } from "../../components/functions/getStyleFromGrade";
 import InfoBox from "../../components/InfoBox";
 import Fact from "../../components/Fact";

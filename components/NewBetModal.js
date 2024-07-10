@@ -12,7 +12,7 @@ const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation }) => {
     setLoading(true);
     const NEW_CLOUD_FUNCTION_URL = 'https://analyze-player-over-under-vilhfa3ama-uc.a.run.app';
     const requestData = { prompt: betQuery };
-
+    console.log(JSON.stringify(requestData));
     try {
       const response = await fetch(NEW_CLOUD_FUNCTION_URL, {
         method: 'POST',

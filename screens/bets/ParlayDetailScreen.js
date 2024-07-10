@@ -7,13 +7,12 @@ import {
 } from "../../components/functions/getStyleFromGrade";
 import styles from "./styles/ParlayDetailsScreenStyles";
 import formatJSON from "../../components/functions/formatJSON";
-import dummyData from "../../dummyRaptor.json";
+import dummyData from "../../assets/dummy/dummyRaptor.json"
 import { arrowIcon, exGradient, exTeam1, exTeam2 } from "../../assets/const";
 import ImageIcon from "../../components/ImageIcon";
 
 const ParlayDetailScreen = ({ navigation, route }) => {
-  const { initialBet } = route.params;
-  console.log(initialBet);
+  console.log(route);
 
   const [modalVisible, setModalVisible] = useState(false);
   const overallStrength = "C-";
