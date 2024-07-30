@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   backgroundBox: {
     paddingHorizontal: 22,
-    paddingVertical: 14,
+    paddingVertical: 18,
     borderRadius: 100,
     position: 'absolute',
     top: 5,

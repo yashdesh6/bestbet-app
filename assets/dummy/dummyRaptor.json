@@ -1,0 +1,178 @@
+{
+  "response": {
+    "response": {
+      "role": "assistant",
+      "content": "Given that Scottie Barnes has averaged 17.9 points per game over his last 10 games, and the Boston Celtics have a strong win percentage of 77.8%, it would be prudent to bet the **under** on Barnes scoring 28.5 points. The Celtics' defense is formidable, and Barnes has only surpassed 28.5 points once in his last 10 outings."
+    },
+    "bet_number": ["28.5"],
+    "player_data": {
+      "response": {
+        "content": {
+          "Player": "scottie_barnes",
+          "Team": "toronto_raptors",
+          "Position": "F",
+          "10_games": [
+            {
+              "Points": 18,
+              "Assists": 5,
+              "Game ID": 13274,
+              "Total Rebounds": 4
+            },
+            {
+              "Points": 13,
+              "Assists": 8,
+              "Game ID": 13292,
+              "Total Rebounds": 10
+            },
+            {
+              "Points": 24,
+              "Assists": 10,
+              "Game ID": 13304,
+              "Total Rebounds": 10
+            },
+            {
+              "Points": 7,
+              "Assists": 9,
+              "Game ID": 13312,
+              "Total Rebounds": 9
+            },
+            {
+              "Points": 29,
+              "Assists": 8,
+              "Game ID": 13330,
+              "Total Rebounds": 12
+            },
+            {
+              "Points": 18,
+              "Assists": 3,
+              "Game ID": 13343,
+              "Total Rebounds": 12
+            },
+            {
+              "Points": 20,
+              "Assists": 10,
+              "Game ID": 13352,
+              "Total Rebounds": 5
+            },
+            {
+              "Points": 21,
+              "Assists": 12,
+              "Game ID": 13377,
+              "Total Rebounds": 12
+            },
+            {
+              "Points": 19,
+              "Assists": 7,
+              "Game ID": 13392,
+              "Total Rebounds": 11
+            },
+            {
+              "Points": 10,
+              "Assists": 3,
+              "Game ID": 13408,
+              "Total Rebounds": 6
+            }
+          ],
+          "Stats": {
+            "avg_points": 17.9,
+            "avg_assists": 7.5,
+            "avg_rebounds": 9.1,
+            "avg_points_plus_assists": 25.4,
+            "avg_points_plus_rebounds": 27.0,
+            "avg_rebounds_plus_assists": 16.6,
+            "avg_points_plus_rebounds_plus_assists": 34.5
+          },
+          "Player_pic": "https://cdn.nba.com/headshots/nba/latest/260x190/1630567.png",
+          "Team_logo": "https://upload.wikimedia.org/wikipedia/fr/8/89/Raptors2015.png",
+          "Team_backgroun": "https://storage.googleapis.com/nba-backgrounds/Raptors%20Component.png"
+        }
+      },
+      "error": false
+    },
+    "defense_data": {
+      "response": {
+        "content": {
+          "Team": "boston_celtics",
+          "Stats": [
+            {
+              "fga": 8181,
+              "fgm": 3960,
+              "fgp": "62.9",
+              "fta": 1843,
+              "ftm": 1482,
+              "ftp": "79.5",
+              "tpa": 3864,
+              "tpm": 1489,
+              "tpp": "38.5",
+              "games": 91,
+              "blocks": 584,
+              "defReb": 3239,
+              "offReb": 979,
+              "pFouls": 1488,
+              "points": 10891,
+              "steals": 631,
+              "totReb": 4218,
+              "assists": 2420,
+              "plusMinus": 1027,
+              "turnovers": 1101,
+              "longestRun": 0,
+              "biggestLead": 0,
+              "pointsInPaint": 0,
+              "fastBreakPoints": 0,
+              "pointsOffTurnovers": 0,
+              "secondChancePoints": 0
+            }
+          ],
+          "Standings": [
+            {
+              "win": {
+                "away": 27,
+                "home": 36,
+                "total": 63,
+                "lastTen": 6,
+                "percentage": "0.778"
+              },
+              "loss": {
+                "away": 14,
+                "home": 4,
+                "total": 18,
+                "lastTen": 4,
+                "percentage": "0.222"
+              },
+              "team": {
+                "id": 2,
+                "code": "BOS",
+                "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/1024px-Celtics_de_Boston_logo.svg.png",
+                "name": "Boston Celtics",
+                "nickname": "Celtics"
+              },
+              "league": "standard",
+              "season": 2023,
+              "streak": 1,
+              "division": {
+                "win": 63,
+                "loss": 18,
+                "name": "atlantic",
+                "rank": 1,
+                "gamesBehind": null
+              },
+              "winStreak": true,
+              "conference": {
+                "win": 63,
+                "loss": 18,
+                "name": "east",
+                "rank": 1
+              },
+              "gamesBehind": null,
+              "tieBreakerPoints": null
+            }
+          ]
+        }
+      },
+      "error": false
+    },
+    "over_under_analysis": "A+",
+    "error": false
+  },
+  "error": false
+}

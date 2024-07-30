@@ -12,7 +12,7 @@ const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation }) => {
     setLoading(true);
     const NEW_CLOUD_FUNCTION_URL = 'https://analyze-player-over-under-vilhfa3ama-uc.a.run.app';
     const requestData = { prompt: betQuery };
-
+    console.log(JSON.stringify(requestData));
     try {
       console.log('Request Data:', requestData); // Log the request payload
 
@@ -29,6 +29,8 @@ const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation }) => {
       if (response.ok) {
         const responseData = JSON.parse(responseText); // Parse JSON response
         console.log('Response from function:', responseData);
+        console.log(responseData.response.defense_data.response.content);
+
         onEvaluateBet(responseData); // Pass the response data to the parent component
         onClose();
         navigation.navigate('ParlayDetailScreen', { initialBet: responseData });
