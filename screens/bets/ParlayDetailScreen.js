@@ -61,7 +61,6 @@ const ParlayDetailScreen = ({ navigation, route }) => {
       </View>
       <View style={styles.midSection}>
         <Text style={styles.sectionHeader}>YOUR EVALUATED BETS</Text>
-
         <ScrollView>
           {betData.map((bet, index) => (
             <TouchableOpacity
