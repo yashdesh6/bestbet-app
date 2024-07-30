@@ -7,7 +7,7 @@ const ParlayDetailScreen = ({ route }) => {
   return (
     <ScrollView>
 
-          <Text>{JSON.stringify(initialBet.response.response.content, null, 2)}</Text>
+          <Text>{JSON.stringify(initialBet, null, 2)}</Text>
     </ScrollView>
   );
 };

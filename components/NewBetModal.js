@@ -14,21 +14,26 @@ const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation }) => {
     const requestData = { prompt: betQuery };
 
     try {
+      console.log('Request Data:', requestData); // Log the request payload
+
       const response = await fetch(NEW_CLOUD_FUNCTION_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData),
       });
 
+      const responseText = await response.text(); // Read response as text first
+      console.log('Response Status:', response.status);
+      console.log('Response Text:', responseText);
+
       if (response.ok) {
-        const responseData = await response.json();
+        const responseData = JSON.parse(responseText); // Parse JSON response
         console.log('Response from function:', responseData);
         onEvaluateBet(responseData); // Pass the response data to the parent component
         onClose();
         navigation.navigate('ParlayDetailScreen', { initialBet: responseData });
       } else {
-        const errorText = await response.text();
-        throw new Error(`Failed to fetch: ${response.status} - ${errorText}`);
+        throw new Error(`Failed to fetch: ${response.status} - ${responseText}`);
       }
     } catch (error) {
       console.error('Error calling Firebase function:', error);
