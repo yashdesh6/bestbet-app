@@ -23,6 +23,8 @@ const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation }) => {
       if (response.ok) {
         const responseData = await response.json();
         console.log('Response from function:', responseData);
+        console.log(responseData.response.defense_data.response.content);
+
         onEvaluateBet(responseData); // Pass the response data to the parent component
         onClose();
         navigation.navigate('ParlayDetailScreen', { initialBet: responseData });

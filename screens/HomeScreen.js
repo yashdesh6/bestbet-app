@@ -101,26 +101,21 @@ const parlayData = [
   //     "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
   //   image: require("../assets/images/lebron.png"),
   // },
-  {
-    title: "STEPHEN CURRY",
-    grade: "C-",
-    description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
-    image: require("../assets/images/steph.png"),
-  },
+  // {
+  //   title: "STEPHEN CURRY",
+  //   grade: "C-",
+  //   description: "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
+  //   image: require("../assets/images/steph.png"),
+  // },
 ];
 
 const HomeScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const dim = 64;
   const username = "SHAI";
 
   const handleEvaluateBet = (betData) => {
-    const newBet = {
-      title: "NIKOLA JOKIC",
-      grade: betData.response.over_under_analysis,
-      description: betData.response.response.content,
-      image: require("../assets/images/steph.png"), // Replace with actual image if available
-    };
-    navigation.navigate("ParlayDetailScreen", { initialBet: newBet });
+    navigation.navigate("ParlayDetailScreen", { initialBet: betData });
   };
 
   return (
@@ -140,17 +135,19 @@ const HomeScreen = ({ navigation }) => {
         <ScrollView>
           {parlayData.map((parlay, index) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate("ParlayDetailScreen")}
+              onPress={() => navigation.navigate("ParlayDetailScreen", { initialBet: parlay })}
               key={index}
               style={styles.parlayItem}
             >
-              {/* <ImageIcon
-                player={parlay.player}
-                gradient={parlay.gradient}
-                team1={parlay.team1}
-                team2={parlay.team2}
-              /> */}
-              <Image source={parlay.image} />
+              <ImageIcon
+                player={parlay.playerImage ? parlay.playerImage : null}
+                teamBackground={parlay.teamBackground ? parlay.teamBackground : null}
+                teamLogo={parlay.teamLogo ? parlay.teamLogo : null}
+                team1={parlay.team1 ? parlay.team1 : null}
+                team2={parlay.team2 ? parlay.team2 : null}
+                dim={dim}
+                style={styles.imageIcon}
+              />
               <View style={styles.parlayText}>
                 <View style={styles.parlayTextContainer}>
                   <Text style={styles.parlayTitle}>{`${parlay.title}: `}</Text>

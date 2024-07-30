@@ -6,14 +6,7 @@ const GraphDisplay = (props) => {
   const width = Dimensions.get("window").width - 64;
   const newData = processGraphData(props.data, props.type, props.isMain);
 
-  let title = "Player Performance";
-  if (props.type == "Points") {
-    title = "Points";
-  } else if (props.type == "Assists") {
-    title = "Assists";
-  } else if (props.type == "Rebounds") {
-    title = "Rebounds";
-  }
+  const title = props?.type || "Player Performance";
 
   return (
     <View
@@ -36,7 +29,7 @@ const GraphDisplay = (props) => {
       {props.isMain ? (
         <BarChart
           spacing={8}
-          barWidth={23}
+          barWidth={20}
           noOfSections={7}
           barBorderRadius={4}
           data={newData.graph_struct.data}
@@ -44,7 +37,7 @@ const GraphDisplay = (props) => {
           xAxisThickness={0}
           hideRules
           showReferenceLine1
-          referenceLine1Position={parseFloat(newData.response.bet_number[0])}
+          referenceLine1Position={parseFloat(newData.threshold)}
           referenceLine1Config={{
             color: "#F7F7F7",
             dashWidth: 12,
@@ -57,7 +50,7 @@ const GraphDisplay = (props) => {
       ) : (
         <BarChart
           spacing={8}
-          barWidth={23}
+          barWidth={20}
           noOfSections={7}
           barBorderRadius={4}
           data={newData.graph_struct.data}

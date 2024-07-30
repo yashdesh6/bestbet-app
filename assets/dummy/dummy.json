@@ -1,0 +1,223 @@
+{
+  "response": {
+    "response": "Based on the data, I would recommend betting the under on Stephen Curry scoring 28.5 points against the Boston Celtics. Here's why:\n\n**Stephen Curry's Recent Performance:**\n- Over his last 10 games, Curry has averaged 24.3 points per game, falling below the 28.5 points threshold.\n- In those 10 games, Curry surpassed the 28.5 point mark in only 3 out of the 10 games, indicating a trend of being under that target.\n\n**Boston Celtics' Defense:**\n- The Celtics have shown strong defensive stats, including recording 584 blocks and 631 steals across 91 games, making it challenging for opponents to score efficiently.\n- Additionally, the Celtics have held their opponents to an average of 108.91 points per game, showcasing their ability to limit the scoring output of key players like Curry.",
+    "insights": [
+      "Stephen Curry has averaged 24.3 points per game in his last 10 games, below the 28.5 point mark for an over bet.",
+      "The Boston Celtics have recorded 584 blocks and 631 steals over 91 games, showing their defensive prowess.",
+      "Curry has only exceeded 28.5 points in 3 out of his last 10 games, pointing towards a more conservative scoring output against a strong defensive team like the Celtics."
+    ],
+    "user_prompt": "Should I bet over or under on Stephen Curry scoring 28.5 Points against the Boston Celtics?",
+    "bet_number": "28.5",
+    "player_data": {
+      "response": {
+        "content": {
+          "Player": "stephen_curry",
+          "Team": "golden_state_warriors",
+          "Position": "G",
+          "10_games": [
+            {
+              "Points": 17,
+              "Assists": 10,
+              "Game ID": 13597,
+              "Total Rebounds": 4,
+              "Points + Assists": 27,
+              "Points + Rebounds": 21,
+              "Assists + Rebounds": 14,
+              "Points + Assists + Rebounds": 31
+            },
+            {
+              "Points": 23,
+              "Assists": 4,
+              "Game ID": 13610,
+              "Total Rebounds": 1,
+              "Points + Assists": 27,
+              "Points + Rebounds": 24,
+              "Assists + Rebounds": 5,
+              "Points + Assists + Rebounds": 28
+            },
+            {
+              "Points": 33,
+              "Assists": 8,
+              "Game ID": 13633,
+              "Total Rebounds": 1,
+              "Points + Assists": 41,
+              "Points + Rebounds": 34,
+              "Assists + Rebounds": 9,
+              "Points + Assists + Rebounds": 42
+            },
+            {
+              "Points": 13,
+              "Assists": 7,
+              "Game ID": 13933,
+              "Total Rebounds": 7,
+              "Points + Assists": 20,
+              "Points + Rebounds": 20,
+              "Assists + Rebounds": 14,
+              "Points + Assists + Rebounds": 27
+            },
+            {
+              "Points": 29,
+              "Assists": 6,
+              "Game ID": 13661,
+              "Total Rebounds": 6,
+              "Points + Assists": 35,
+              "Points + Rebounds": 35,
+              "Assists + Rebounds": 12,
+              "Points + Assists + Rebounds": 41
+            },
+            {
+              "Points": 28,
+              "Assists": 5,
+              "Game ID": 13645,
+              "Total Rebounds": 6,
+              "Points + Assists": 33,
+              "Points + Rebounds": 34,
+              "Assists + Rebounds": 11,
+              "Points + Assists + Rebounds": 39
+            },
+            {
+              "Points": 23,
+              "Assists": 8,
+              "Game ID": 13703,
+              "Total Rebounds": 7,
+              "Points + Assists": 31,
+              "Points + Rebounds": 30,
+              "Assists + Rebounds": 15,
+              "Points + Assists + Rebounds": 38
+            },
+            {
+              "Points": 22,
+              "Assists": 8,
+              "Game ID": 13717,
+              "Total Rebounds": 7,
+              "Points + Assists": 30,
+              "Points + Rebounds": 29,
+              "Assists + Rebounds": 15,
+              "Points + Assists + Rebounds": 37
+            },
+            {
+              "Points": 33,
+              "Assists": 5,
+              "Game ID": 13730,
+              "Total Rebounds": 4,
+              "Points + Assists": 38,
+              "Points + Rebounds": 37,
+              "Assists + Rebounds": 9,
+              "Points + Assists + Rebounds": 42
+            },
+            {
+              "Points": 22,
+              "Assists": 2,
+              "Game ID": 13936,
+              "Total Rebounds": 4,
+              "Points + Assists": 24,
+              "Points + Rebounds": 26,
+              "Assists + Rebounds": 6,
+              "Points + Assists + Rebounds": 28
+            }
+          ],
+          "Stats": {
+            "avg_points": 24.3,
+            "avg_assists": 6.3,
+            "avg_rebounds": 4.7,
+            "avg_points_plus_assists": 30.6,
+            "avg_points_plus_rebounds": 29.0,
+            "avg_rebounds_plus_assists": 11.0,
+            "avg_points_plus_rebounds_plus_assists": 35.3
+          },
+          "Player_pic": "https://cdn.nba.com/headshots/nba/latest/260x190/201939.png",
+          "Team_logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Warriors_de_Golden_State_logo.svg/1200px-Warriors_de_Golden_State_logo.svg.png",
+          "Team_background": "https://storage.googleapis.com/nba-backgrounds/Warriors%20Component.png"
+        }
+      },
+      "error": false
+    },
+    "defense_data": {
+      "response": {
+        "content": {
+          "Team": "boston_celtics",
+          "Stats": [
+            {
+              "fga": 8181,
+              "fgm": 3960,
+              "fgp": "62.9",
+              "fta": 1843,
+              "ftm": 1482,
+              "ftp": "79.5",
+              "tpa": 3864,
+              "tpm": 1489,
+              "tpp": "38.5",
+              "games": 91,
+              "blocks": 584,
+              "defReb": 3239,
+              "offReb": 979,
+              "pFouls": 1488,
+              "points": 10891,
+              "steals": 631,
+              "totReb": 4218,
+              "assists": 2420,
+              "plusMinus": 1027,
+              "turnovers": 1101,
+              "longestRun": 0,
+              "biggestLead": 0,
+              "pointsInPaint": 0,
+              "fastBreakPoints": 0,
+              "pointsOffTurnovers": 0,
+              "secondChancePoints": 0
+            }
+          ],
+          "Standings": [
+            {
+              "win": {
+                "away": 27,
+                "home": 36,
+                "total": 63,
+                "lastTen": 6,
+                "percentage": "0.778"
+              },
+              "loss": {
+                "away": 14,
+                "home": 4,
+                "total": 18,
+                "lastTen": 4,
+                "percentage": "0.222"
+              },
+              "team": {
+                "id": 2,
+                "code": "BOS",
+                "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/1024px-Celtics_de_Boston_logo.svg.png",
+                "name": "Boston Celtics",
+                "nickname": "Celtics"
+              },
+              "league": "standard",
+              "season": 2023,
+              "streak": 1,
+              "division": {
+                "win": 63,
+                "loss": 18,
+                "name": "atlantic",
+                "rank": 1,
+                "gamesBehind": null
+              },
+              "winStreak": true,
+              "conference": {
+                "win": 63,
+                "loss": 18,
+                "name": "east",
+                "rank": 1
+              },
+              "gamesBehind": null,
+              "tieBreakerPoints": null,
+              "winPercentage": 0.7778
+            }
+          ]
+        }
+      },
+      "error": false
+    },
+    "over_under_analysis": "A",
+    "graph_key": "points",
+    "error": false
+  },
+  "error": false
+}

@@ -7,55 +7,48 @@ import {
 } from "../../components/functions/getStyleFromGrade";
 import styles from "./styles/ParlayDetailsScreenStyles";
 import formatJSON from "../../components/functions/formatJSON";
-import dummyData from "../../assets/dummy/dummyRaptor.json"
-import { arrowIcon, exGradient, exTeam1, exTeam2 } from "../../assets/const";
+import { arrowIcon } from "../../assets/const";
 import ImageIcon from "../../components/ImageIcon";
 
 const ParlayDetailScreen = ({ navigation, route }) => {
-  console.log(route);
-
   const [modalVisible, setModalVisible] = useState(false);
-  const overallStrength = "C-";
   const dim = 64;
 
-  const jsonData = formatJSON(dummyData);
+  // const jsonData = formatJSON(dummyData);
+  const jsonData = formatJSON(route.params.initialBet);
+
+  const overallStrength = jsonData.betRating;
+
+  // console.log("#########JSON Data: ");
+  // console.log(jsonData);
+
   const betData = [
     {
-      title: jsonData.playerName,
-      grade: jsonData.betRating,
-      description: jsonData.userBet,
+      playerData: jsonData.playerData,
+      playerName: jsonData.playerName,
+      playerDescription: jsonData.playerDescription,
+      userBet: jsonData.userBet,
+      betRating: jsonData.betRating,
+      suggestion: jsonData.suggestion,
+      playerFacts: jsonData.playerFacts,
+      threshold: jsonData.threshold,
       playerImage: jsonData.playerImage,
-      teamBackground: jsonData.teamBackground,
       teamLogo: jsonData.teamLogo,
-    },
-    {
-      title: jsonData.playerName,
-      grade: jsonData.betRating,
-      description: jsonData.userBet,
-      team1: exTeam1,
-      team2: exTeam2,
-    },
-    {
-      title: jsonData.playerName,
-      grade: jsonData.betRating,
-      description: jsonData.userBet,
-      playerImage: jsonData.playerImage,
       teamBackground: jsonData.teamBackground,
-      teamLogo: jsonData.teamLogo,
-    },
+      team1: jsonData.team1,
+      team2: jsonData.team2,
+      betType: jsonData.betType
+    }
   ];
 
-  const handleEvaluateBet = (betInput) => {
-    // Handle bet input evaluation here
-    console.log("Evaluating bet:", betInput);
-    // Close the modal and possibly navigate
-    setModalVisible(false);
+  const handleEvaluateBet = (bet) => {
+    navigation.navigate("BetDetailScreen", { bet: formatJSON(bet) });
   };
 
   return (
     <View style={styles.screen}>
       <View style={styles.topSection}>
-        <Text style={styles.title}>{betData[0].title}</Text>
+        <Text style={styles.title}>{betData[0].playerName}</Text>
         <View style={styles.textContainer}>
           <Text style={styles.subtitle}>OVERALL STRENGTH: </Text>
           <Text style={getStyleForGrade(overallStrength)}>
@@ -72,7 +65,7 @@ const ParlayDetailScreen = ({ navigation, route }) => {
         <ScrollView>
           {betData.map((bet, index) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate("BetDetailScreen")}
+              onPress={() => navigation.navigate("BetDetailScreen", { bet: bet })}
               key={index}
               style={styles.betItem}
             >
@@ -87,12 +80,12 @@ const ParlayDetailScreen = ({ navigation, route }) => {
               />
               <View style={styles.betText}>
                 <View style={styles.betTextContainer}>
-                  <Text style={styles.betTitle}>{`${bet.title}: `}</Text>
+                  <Text style={styles.betTitle}>{`${bet.playerName}: `}</Text>
                   <Text
-                    style={getStyleForGrade(bet.grade)}
-                  >{`(${bet.grade})`}</Text>
+                    style={getStyleForGrade(bet.betRating)}
+                  >{`(${bet.betRating})`}</Text>
                 </View>
-                <Text style={styles.betDescription}>{bet.description}</Text>
+                <Text style={styles.betDescription}>{bet.userBet}</Text>
               </View>
               <Image style={styles.arrowIcon} source={{ uri: arrowIcon }} />
             </TouchableOpacity>

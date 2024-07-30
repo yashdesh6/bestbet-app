@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 
 const processGraphData = (json, type, isMain) => {
-  const threshold = parseFloat(json.response.bet_number[0]);
+  const threshold = parseFloat(json.threshold);
 
   const getColor = (value, threshold, isMain) => {
     if (isMain) {
@@ -18,7 +18,7 @@ const processGraphData = (json, type, isMain) => {
     }
   };
 
-  const processedData = json.response.player_data.response.content[
+  const processedData = json.playerData[
     "10_games"
   ].map((item) => {
     let key = type.charAt(0).toUpperCase() + type.slice(1);

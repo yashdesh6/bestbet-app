@@ -2,28 +2,36 @@ import React from "react";
 import { View, Dimensions, StyleSheet } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import GraphDisplay from "./GraphDisplay";
+import getTypes from "./functions/getTypes";
 
-const GraphCarousel = (props) => {
-  const { type, data } = props;
-  const types = ["Points", "Assists", "Rebounds"];
+const GraphCarousel = ({ data }) => {
+  const type = data.betType;
+  const types = getTypes(type);
   const width = Dimensions.get("window").width;
 
+  console.log(types);
+
   // Determine the order of graph types
-  const displayTypes = [type, ...types.filter((t) => t !== type)];
+  const displayTypes = [
+    ...types.filter((t) => t.toLowerCase() === type),
+    ...types.filter((t) => t.toLowerCase() !== type),
+  ];
+
+  console.log(displayTypes);
 
   return (
     <View style={styles.container}>
       <Carousel
-        loop
-        autoPlay={true}
+        loop={displayTypes.length > 1}
+        autoPlay={displayTypes.length > 1}
         autoPlayInterval={5000}
         width={width}
-        height={250} // Adjust height as needed
+        height={250}
         data={displayTypes}
         scrollAnimationDuration={1000}
         renderItem={({ item }) => (
           <View style={{ pointerEvents: "none" }}>
-            <GraphDisplay data={data} type={item} isMain={item === type} />
+            <GraphDisplay data={data} type={item} isMain={item.toLowerCase() === type} />
           </View>
         )}
       />

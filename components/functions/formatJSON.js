@@ -11,29 +11,25 @@ const formatJSON = (json) => {
     return toTitleCase(str.replace(/_/g, " "));
   };
 
-  // Function to process the new JSON structure
   const playerData = json.response.player_data.response.content;
-  const suggestion = json.response.response.content;
-  const betNumber = json.response.bet_number[0];
-  const facts = [
-    "Pokem ipsum dolor sit amet Croconaw Baltoy Bug Linoone...",
-    "Mineral Badge Dugtrio Dragon Rage Manectric Jumpluff Abomasnow...",
-    "Pika-pi Thundershock Parasect deserunt mollit Leech Seed...",
-  ];
 
   return {
+    playerData: playerData,
     playerName: formatName(playerData.Player),
     playerDescription: `Position: ${playerData.Position} | Team: ${formatName(
       playerData.Team
     )}`,
-    userBet: "Lorem ipsum dolores sit amet adipiscing elit",
+    userBet: json.response.user_prompt,
     betRating: json.response.over_under_analysis,
-    suggestion: suggestion,
-    playerFacts: facts,
-    threshold: betNumber,
+    suggestion: json.response.response,
+    playerFacts: json.response.insights,
+    threshold: json.response.bet_number,
     playerImage: playerData.Player_pic,
     teamLogo: playerData.Team_logo,
-    teamBackground: playerData.Team_backgroun
+    teamBackground: playerData.Team_background,
+    team1: null,
+    team2: null,
+    betType: json.response.graph_key
   };
 };
 
