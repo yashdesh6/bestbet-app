@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,8 @@ import styles from "./HomeScreenStyles";
 import NewBetModal from "../components/NewBetModal";
 import { arrowIcon } from "../assets/const";
 import { getStyleForGrade } from "../components/functions/getStyleFromGrade";
-
+import { Parlays , Bets} from "../DBPrototypes";
+import { useSQLiteContext } from "expo-sqlite";
 const parlayData = [
   // {
   //   title: "GSW WINS",
@@ -111,7 +112,22 @@ const parlayData = [
 
 const HomeScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [parlays, setParlays] = useState([]);
+
+  const db = useSQLiteContext();
   const username = "SHAI";
+
+  async function getData(){
+    const result = await db.getAllAsync('SELECT * FROM Parlays ORDER BY createdAt DESC');
+    setParlays(result);
+    console.log(result);
+  }
+
+  useEffect(() => {
+    db.withTransactionAsync(async () => {
+      await getData();
+    });
+  }, [db]);
 
   const handleEvaluateBet = (betData) => {
     const newBet = {
@@ -122,6 +138,15 @@ const HomeScreen = ({ navigation }) => {
     };
     navigation.navigate("ParlayDetailScreen", { initialBet: newBet });
   };
+
+  // if (loading) {
+  //   return (
+  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+  //       <ActivityIndicator size="large" />
+  //       <Text>Loading Database...</Text>
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.screen}>
@@ -138,9 +163,9 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.subHeaderText}>EVALUATE PREVIOUS PARLAYS</Text>
         </View>
         <ScrollView>
-          {parlayData.map((parlay, index) => (
+          {parlays.map((parlay, index) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate("ParlayDetailScreen")}
+              onPress={() => navigation.navigate("ParlayDetailScreen", { parlayId: parlay.id })}
               key={index}
               style={styles.parlayItem}
             >

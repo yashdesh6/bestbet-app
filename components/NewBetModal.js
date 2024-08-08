@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Modal, StyleSheet, KeyboardAvoidingView, ScrollView, Platform, ActivityIndicator, Alert } from 'react-native';
 import { BlurView } from 'expo-blur';
+import { useDatabase } from '../dbOperations';
 
-const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation }) => {
+const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation, parlayId }) => {
   const [selectedLeague, setSelectedLeague] = useState('NBA');
   const [selectedType, setSelectedType] = useState('Player O/U');
   const [betInput, setBetInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [defaultParlayId, setDefaultParlayId] = useState(null);
+  
+  const { getNextParlayId, insertParlay, insertBet } = useDatabase();
 
   const analyzePOU = async (betQuery) => {
     setLoading(true);
@@ -24,6 +28,44 @@ const NewBetModal = ({ isVisible, onClose, onEvaluateBet, navigation }) => {
         const responseData = await response.json();
         console.log('Response from function:', responseData);
         onEvaluateBet(responseData); // Pass the response data to the parent component
+        const betData = {
+          parlayId: parlayId || defaultParlayId,
+          description: parseFloat(responseData.response.bet_number),
+          defense_data: JSON.stringify(responseData.response.defense_data),
+          grade: responseData.response.over_under_analysis,  // Assuming this is the grade
+          createdAt: new Date().toISOString(),  // Adding this field if it's expected
+          graph_key: responseData.response.graph_key,
+          insights: JSON.stringify(responseData.response.insights),
+          over_under_analysis: responseData.response.over_under_analysis,
+          player_data: JSON.stringify(responseData.response.player_data),
+          response: responseData.response.response,  // The actual response text
+          user_prompt: responseData.response.user_prompt
+        };
+        try {
+          if (!parlayId) {
+            console.log("initializing new parlay");
+            const nextParlayId = await getNextParlayId();
+            setDefaultParlayId(nextParlayId);
+            const parlayData = {
+              id: nextParlayId,
+              title: betData.title || "NBA Playoffs Parlay",  // Actual title or default
+              grade: betData.grade || "A",  // Actual grade or default
+              description: betData.user_prompt || "This parlay includes bets on various NBA playoff games.",  // Actual description or default
+              image: responseData.image || "../assets/images/steph.png",  // Actual image path or URL or default
+              createdAt: new Date().toISOString()  // Ensure this is in ISO 8601 format if it's a date string
+            };
+            betData.parlayId = nextParlayId;
+            console.log("The next parlayId is:");
+            await insertParlay(parlayData);
+            Alert.alert('Success', 'Parlay inserted successfully');
+          }
+          console.log(betData);
+          await insertBet(betData);
+          Alert.alert('Success', 'Bet inserted successfully');
+        } catch (error) {
+          console.error('Error inserting bet:', error);
+          Alert.alert('Error', 'Failed to insert bet');
+        }
         onClose();
         navigation.navigate('ParlayDetailScreen', { initialBet: responseData });
       } else {

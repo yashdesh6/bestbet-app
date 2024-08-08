@@ -7,6 +7,8 @@ import {
   ScrollView,
 } from "react-native";
 import styles from "./styles/NewBetScreenStyles";
+import { insertBet } from '../../dbOperations'; // Adjust the path if necessary
+
 
 const NewBetScreen = ({ navigation }) => {
   const [selectedLeague, setSelectedLeague] = useState("NBA");
